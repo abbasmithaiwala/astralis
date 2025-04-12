@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 import Features from "./pages/Features";
 import About from "./pages/About";
 import Pricing from "./pages/Pricing";
+import SettingsPage from "./pages/SettingsPage";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
             <Route path="/features" element={<Features />} />
             <Route path="/about" element={<About />} />
             <Route path="/pricing" element={<Pricing />} />
+            <Route path="/settings" element={<SettingsPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

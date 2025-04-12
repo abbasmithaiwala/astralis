@@ -22,6 +22,15 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     root.classList.remove('light', 'dark');
     root.classList.add(theme);
     localStorage.setItem('theme', theme);
+    
+    // Update CSS variables based on theme
+    if (theme === 'dark') {
+      document.documentElement.style.setProperty('--primary-color', '#FCA591');
+      document.documentElement.style.setProperty('--background-color', '#1E1E1E');
+    } else {
+      document.documentElement.style.setProperty('--primary-color', '#FCA591');
+      document.documentElement.style.setProperty('--background-color', '#FFFFFF');
+    }
   }, [theme]);
 
   const toggleTheme = () => {
