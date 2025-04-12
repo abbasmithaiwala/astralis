@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Briefcase, Calendar, Tag, CheckCircle, Shield, Smartphone, Clock, ArrowRight, PenLine, Sparkles, RefreshCw } from 'lucide-react';
+import { Briefcase, Calendar, Tag, CheckCircle, Shield, Smartphone, Clock, ArrowRight, PenLine, Sparkles, RefreshCw, ArrowLeft, BookText, Pencil, Headphones, Code } from 'lucide-react';
 
 const Index = () => {
   return (
@@ -11,45 +11,136 @@ const Index = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="hero-gradient text-pastel-neutral-800 py-24 md:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/img/dots-pattern.svg')] opacity-10"></div>
+      <section className="hero-gradient py-8 md:py-16 relative overflow-hidden create-hub-section">
         <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
-              Organize Your Thoughts, <span className="gradient-text">Effortlessly</span>
+          
+          <div className="max-w-4xl mx-auto mb-8">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 heading-serif text-center">
+              Create <br className="hidden md:block" />with Pi
             </h1>
-            <p className="text-lg md:text-xl max-w-2xl mx-auto mb-10 text-pastel-neutral-600">
-              A beautiful, intuitive notes app that helps you capture ideas, make lists, and stay organized—anytime, anywhere.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="rounded-full bg-pastel-pink-dark hover:bg-pastel-pink-dark/90 text-white shadow-md hover:shadow-lg transition-all px-8">
-                <Link to="/signup">Get Started — Free</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full border-pastel-pink-dark/30 text-pastel-neutral-700 hover:bg-pastel-pink-light/20">
-                <Link to="/login">Sign In</Link>
-              </Button>
-            </div>
           </div>
           
-          {/* App Preview */}
-          <div className="mt-16 relative">
-            <div className="max-w-5xl mx-auto rounded-2xl shadow-xl overflow-hidden glass-card border-white">
-              <img 
-                src="https://images.unsplash.com/photo-1527219525722-f9767a7f2884?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2073&q=80" 
-                alt="PastelNotes App" 
-                className="w-full object-cover border border-white/20"
-              />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+            {/* Card 1 - Brainstorm ideas */}
+            <div className="relative sm:mt-8">
+              <div className="create-card">
+                <div className="create-card-content">
+                  <img 
+                    src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80" 
+                    alt="Brainstorm ideas" 
+                    className="w-full h-40 object-cover"
+                  />
+                  <div className="create-card-label mx-auto">
+                    <Pencil size={14} />
+                    <span>Brainstorm ideas</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="absolute -bottom-5 left-0 right-0 flex justify-center">
-              <div className="flex items-center bg-white py-2 px-4 rounded-full shadow-lg">
-                <span className="flex h-3 w-3 me-2">
-                  <span className="animate-ping absolute h-3 w-3 rounded-full bg-pastel-green-dark opacity-75"></span>
-                  <span className="relative rounded-full h-3 w-3 bg-pastel-green-dark"></span>
-                </span>
-                <p className="text-sm font-medium text-pastel-neutral-700">2,500+ active users</p>
+            
+            {/* Card 2 - Plan a trip */}
+            <div className="relative sm:mt-0 lg:mt-4">
+              <div className="create-card">
+                <div className="create-card-content">
+                  <img 
+                    src="https://images.unsplash.com/photo-1503917988258-f87a78e3c995?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80" 
+                    alt="Plan a trip" 
+                    className="w-full h-40 object-cover"
+                  />
+                  <div className="create-card-label mx-auto">
+                    <ArrowRight size={14} />
+                    <span>Plan a trip</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Card 3 - Custom podcast */}
+            <div className="relative sm:mt-10">
+              <div className="create-card">
+                <div className="create-card-content">
+                  <img 
+                    src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80" 
+                    alt="Custom podcast" 
+                    className="w-full h-40 object-cover"
+                  />
+                  <div className="create-card-label mx-auto">
+                    <Headphones size={14} />
+                    <span>Custom podcast</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Card 4 - Name your dog */}
+            <div className="relative sm:mt-4 lg:mt-0">
+              <div className="create-card">
+                <div className="create-card-content">
+                  <img 
+                    src="https://images.unsplash.com/photo-1534361960057-19889db9621e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" 
+                    alt="Name your dog" 
+                    className="w-full h-40 object-cover"
+                  />
+                  <div className="create-card-label mx-auto">
+                    <Tag size={14} />
+                    <span>Name your dog</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Card 5 - Write a text */}
+            <div className="relative sm:mt-12 lg:mt-6">
+              <div className="create-card">
+                <div className="create-card-content">
+                  <img 
+                    src="https://images.unsplash.com/photo-1485322551133-3a4c27a9d925?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" 
+                    alt="Write a text" 
+                    className="w-full h-40 object-cover"
+                  />
+                  <div className="create-card-label mx-auto">
+                    <PenLine size={14} />
+                    <span>Write a text</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Card 6 - Write a story */}
+            <div className="relative sm:mt-2">
+              <div className="create-card">
+                <div className="create-card-content">
+                  <img 
+                    src="https://images.unsplash.com/photo-1511376777868-611b54f68947?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" 
+                    alt="Write a story" 
+                    className="w-full h-40 object-cover"
+                  />
+                  <div className="create-card-label mx-auto">
+                    <BookText size={14} />
+                    <span>Write a story</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Card 7 - Code */}
+            <div className="relative sm:mt-10 lg:mt-2 col-span-1 sm:col-span-2 lg:col-span-3 max-w-sm mx-auto">
+              <div className="create-card">
+                <div className="create-card-content">
+                  <img 
+                    src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" 
+                    alt="Code" 
+                    className="w-full h-40 object-cover"
+                  />
+                  <div className="create-card-label mx-auto">
+                    <Code size={14} />
+                    <span>Code</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+          
         </div>
       </section>
       
@@ -249,12 +340,12 @@ const Index = () => {
         <div className="absolute inset-0 bg-[url('/img/dots-pattern.svg')] opacity-10"></div>
         <div className="container mx-auto px-6 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
-            Ready to Get <span className="gradient-text">Organized</span>?
+            Ready to Get <span className="heading-serif">Organized</span>?
           </h2>
           <p className="text-lg max-w-2xl mx-auto mb-10 text-pastel-neutral-600">
             Join thousands of users who've transformed how they take notes. Try PastelNotes today—it's free to get started.
           </p>
-          <Button asChild size="lg" className="rounded-full bg-pastel-pink-dark hover:bg-pastel-pink-dark/90 text-white shadow-md hover:shadow-lg transition-all px-8">
+          <Button asChild size="lg" className="rounded-full bg-[#054A40] hover:bg-[#054A40]/90 text-white shadow-md hover:shadow-lg transition-all px-8">
             <Link to="/signup">Create Your Free Account</Link>
           </Button>
         </div>

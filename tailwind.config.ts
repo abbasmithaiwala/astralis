@@ -131,7 +131,8 @@ export default {
 				'scale-out': 'scale-out 0.2s ease-out',
 			},
 			fontFamily: {
-				sans: ['Poppins', 'sans-serif'],
+				sans: ['Plus Jakarta Sans', 'sans-serif'],
+				serif: ['Newsreader', 'serif'],
 			},
 		}
 	},
