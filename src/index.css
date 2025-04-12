@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,32 +7,32 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 346 83.3% 80.6%;
-    --primary-foreground: 355 100% 97.3%;
+    --primary: 335 87% 82%;
+    --primary-foreground: 355 100% 99%;
 
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222 47% 11%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 346 83.3% 80.6%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 335 87% 82%;
 
     --radius: 0.75rem;
 
@@ -48,25 +47,25 @@
   }
 
   .dark {
-    --background: 20 14.3% 4.1%;
-    --foreground: 0 0% 95%;
-    --card: 24 9.8% 10%;
-    --card-foreground: 0 0% 95%;
-    --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 346 83.3% 80.6%;
-    --primary-foreground: 355 100% 97.3%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 12 6.5% 15.1%;
-    --accent-foreground: 0 0% 98%;
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 14%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 335 87% 82%;
+    --primary-foreground: 355 100% 99%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 85.7% 97.3%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 346 83.3% 80.6%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 335 87% 82%;
   }
 }
 
@@ -80,7 +79,7 @@
   }
 
   .note-card {
-    @apply bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden;
+    @apply bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden;
   }
   
   .note-card-content {
@@ -108,8 +107,12 @@
     }
   }
 
-  .gradient-bg {
-    @apply bg-gradient-to-br from-pastel-pink via-pastel-purple to-pastel-blue;
+  .hero-gradient {
+    @apply bg-gradient-to-br from-pastel-purple-light via-pastel-pink-light to-pastel-blue-light;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-pastel-pink-dark to-pastel-purple-dark bg-clip-text text-transparent;
   }
   
   .btn-pastel {
@@ -117,10 +120,18 @@
   }
   
   .btn-pastel-primary {
-    @apply btn-pastel bg-pastel-pink-dark text-white hover:bg-opacity-90;
+    @apply btn-pastel bg-pastel-pink-dark text-white hover:bg-opacity-90 shadow-sm hover:shadow-md;
   }
   
   .btn-pastel-secondary {
-    @apply btn-pastel bg-white text-pastel-pink-dark border border-pastel-pink-dark hover:bg-pastel-pink hover:bg-opacity-10;
+    @apply btn-pastel bg-white text-pastel-pink-dark border border-pastel-pink-dark/20 hover:bg-pastel-pink-light hover:bg-opacity-20;
+  }
+
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md rounded-xl shadow-sm border border-white/30;
+  }
+  
+  .feature-card {
+    @apply p-6 rounded-xl transition-all duration-300 hover:translate-y-[-4px];
   }
 }

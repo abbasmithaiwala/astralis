@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -65,16 +64,31 @@ export default {
 				},
 				// Pastel color palette
 				pastel: {
-					pink: '#FEE9E9',
-					blue: '#E6EFFF',
-					green: '#E9F6EF',
-					purple: '#F4E9FF',
-					yellow: '#FFF9E6',
-					'pink-dark': '#D9A7B0',
-					'blue-dark': '#A7B0D9',
-					'green-dark': '#A7D9B0',
-					'purple-dark': '#C7A7D9',
-					'yellow-dark': '#D9CFA7',
+					pink: '#FFDCE5',
+					'pink-light': '#FFF0F5',
+					blue: '#D6E5FF',
+					'blue-light': '#EBF4FF',
+					green: '#D1F5E0',
+					'green-light': '#E6FFF2',
+					purple: '#EAD6FF',
+					'purple-light': '#F5EBFF',
+					yellow: '#FFF3D1',
+					'yellow-light': '#FFFAEB',
+					'pink-dark': '#F67E9F',
+					'blue-dark': '#7C9CE8',
+					'green-dark': '#6BD5A8',
+					'purple-dark': '#B57EF7',
+					'yellow-dark': '#F7CA7E',
+					'neutral-50': '#F9FAFB',
+					'neutral-100': '#F3F4F6',
+					'neutral-200': '#E5E7EB',
+					'neutral-300': '#D1D5DB',
+					'neutral-400': '#9CA3AF',
+					'neutral-500': '#6B7280',
+					'neutral-600': '#4B5563',
+					'neutral-700': '#374151',
+					'neutral-800': '#1F2937',
+					'neutral-900': '#111827',
 				}
 			},
 			borderRadius: {
