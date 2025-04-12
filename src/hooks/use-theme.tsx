@@ -25,11 +25,21 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     
     // Update CSS variables based on theme
     if (theme === 'dark') {
-      document.documentElement.style.setProperty('--primary-color', '#FCA591');
-      document.documentElement.style.setProperty('--background-color', '#1E1E1E');
+      // Whimsical dark mode colors
+      document.documentElement.style.setProperty('--primary-color', '#9b87f5');
+      document.documentElement.style.setProperty('--background-color', '#1A1F2C');
+      document.documentElement.style.setProperty('--card-background', '#222222');
+      document.documentElement.style.setProperty('--text-primary', '#ffffff');
+      document.documentElement.style.setProperty('--text-secondary', '#9F9EA1');
+      document.documentElement.style.setProperty('--border-color', '#333333');
     } else {
-      document.documentElement.style.setProperty('--primary-color', '#FCA591');
+      // Whimsical light mode colors
+      document.documentElement.style.setProperty('--primary-color', '#9b87f5');
       document.documentElement.style.setProperty('--background-color', '#FFFFFF');
+      document.documentElement.style.setProperty('--card-background', '#FFFFFF');
+      document.documentElement.style.setProperty('--text-primary', '#333333');
+      document.documentElement.style.setProperty('--text-secondary', '#555555');
+      document.documentElement.style.setProperty('--border-color', '#F1F1F1');
     }
   }, [theme]);
 
