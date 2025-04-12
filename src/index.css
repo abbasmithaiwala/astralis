@@ -155,8 +155,63 @@
   .heading-serif {
     @apply font-serif text-[#054A40];
   }
+
+  /* Emotion card styles */
+  .emotion-card-happy:hover .create-card-label {
+    @apply bg-[#FFF4DE] border-[#F7B731]/30;
+  }
+  
+  .emotion-card-sad:hover .create-card-label {
+    @apply bg-[#E9EDF1] border-[#6C757D]/30;
+  }
+  
+  .emotion-card-peaceful:hover .create-card-label {
+    @apply bg-[#E6F7FF] border-[#5EAFFF]/30;
+  }
+  
+  .emotion-card-love:hover .create-card-label {
+    @apply bg-[#FFE6ED] border-[#FC5C8D]/30;
+  }
+  
+  .emotion-card-exciting:hover .create-card-label {
+    @apply bg-[#FFF0E5] border-[#FF8F5C]/30;
+  }
+  
+  .emotion-card-inspiring:hover .create-card-label {
+    @apply bg-[#F0E6FF] border-[#8440FF]/30;
+  }
+  
+  .emotion-card-stormy:hover .create-card-label {
+    @apply bg-[#E6EEFF] border-[#5271FF]/30;
+  }
 }
 
 .create-hub-section {
   position: relative;
+}
+
+/* Hover animation for emotion cards */
+.create-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.create-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+.create-card-content img {
+  transition: transform 0.5s ease;
+}
+
+.create-card:hover .create-card-content img {
+  transform: scale(1.05);
+}
+
+.create-card-label {
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.create-card:hover .create-card-label {
+  transform: translateY(-2px);
 }

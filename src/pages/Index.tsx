@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Briefcase, Calendar, Tag, CheckCircle, Shield, Smartphone, Clock, ArrowRight, PenLine, Sparkles, RefreshCw, ArrowLeft, BookText, Pencil, Headphones, Code } from 'lucide-react';
+import { Tag, CheckCircle, Shield, Smartphone, ArrowRight, PenLine, Sparkles, RefreshCw, ArrowLeft, BookText, Heart, Music, Coffee, CloudLightning, Laugh, Frown, Smile } from 'lucide-react';
 
 const Index = () => {
   return (
@@ -21,120 +21,120 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-            {/* Card 1 - Brainstorm ideas */}
-            <div className="relative sm:mt-8">
-              <div className="create-card">
-                <div className="create-card-content">
+            {/* Card 1 - Happy Moments */}
+            <div className="relative sm:mt-8 group">
+              <div className="create-card group-hover:shadow-lg transition-all duration-500 transform group-hover:-translate-y-1">
+                <div className="create-card-content overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80" 
-                    alt="Brainstorm ideas" 
-                    className="w-full h-40 object-cover"
+                    src="https://images.unsplash.com/photo-1464062322489-137218c9ec2c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80" 
+                    alt="Happy Moments" 
+                    className="w-full h-40 object-cover transform group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="create-card-label mx-auto">
-                    <Pencil size={14} />
-                    <span>Brainstorm ideas</span>
+                  <div className="create-card-label mx-auto group-hover:bg-[#FFF4DE] transition-colors duration-300">
+                    <Smile size={14} className="text-[#F7B731]" />
+                    <span>Happy Moments</span>
                   </div>
                 </div>
               </div>
             </div>
             
-            {/* Card 2 - Plan a trip */}
-            <div className="relative sm:mt-0 lg:mt-4">
-              <div className="create-card">
-                <div className="create-card-content">
+            {/* Card 2 - Peaceful Reflections */}
+            <div className="relative sm:mt-0 lg:mt-4 group">
+              <div className="create-card group-hover:shadow-lg transition-all duration-500 transform group-hover:-translate-y-1">
+                <div className="create-card-content overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1503917988258-f87a78e3c995?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80" 
-                    alt="Plan a trip" 
-                    className="w-full h-40 object-cover"
+                    src="https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" 
+                    alt="Peaceful Reflections" 
+                    className="w-full h-40 object-cover transform group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="create-card-label mx-auto">
-                    <ArrowRight size={14} />
-                    <span>Plan a trip</span>
+                  <div className="create-card-label mx-auto group-hover:bg-[#E6F7FF] transition-colors duration-300">
+                    <Coffee size={14} className="text-[#5EAFFF]" />
+                    <span>Peaceful Reflections</span>
                   </div>
                 </div>
               </div>
             </div>
             
-            {/* Card 3 - Custom podcast */}
-            <div className="relative sm:mt-10">
-              <div className="create-card">
-                <div className="create-card-content">
+            {/* Card 3 - Inspiring Music */}
+            <div className="relative sm:mt-10 group">
+              <div className="create-card group-hover:shadow-lg transition-all duration-500 transform group-hover:-translate-y-1">
+                <div className="create-card-content overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80" 
-                    alt="Custom podcast" 
-                    className="w-full h-40 object-cover"
+                    src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" 
+                    alt="Inspiring Music" 
+                    className="w-full h-40 object-cover transform group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="create-card-label mx-auto">
-                    <Headphones size={14} />
-                    <span>Custom podcast</span>
+                  <div className="create-card-label mx-auto group-hover:bg-[#F0E6FF] transition-colors duration-300">
+                    <Music size={14} className="text-[#8440FF]" />
+                    <span>Inspiring Music</span>
                   </div>
                 </div>
               </div>
             </div>
             
-            {/* Card 4 - Name your dog */}
-            <div className="relative sm:mt-4 lg:mt-0">
-              <div className="create-card">
-                <div className="create-card-content">
+            {/* Card 4 - Sad Days */}
+            <div className="relative sm:mt-4 lg:mt-0 group">
+              <div className="create-card group-hover:shadow-lg transition-all duration-500 transform group-hover:-translate-y-1">
+                <div className="create-card-content overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1534361960057-19889db9621e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" 
-                    alt="Name your dog" 
-                    className="w-full h-40 object-cover"
+                    src="https://images.unsplash.com/photo-1541199249251-f713e6145474?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2074&q=80" 
+                    alt="Sad Days" 
+                    className="w-full h-40 object-cover transform group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="create-card-label mx-auto">
-                    <Tag size={14} />
-                    <span>Name your dog</span>
+                  <div className="create-card-label mx-auto group-hover:bg-[#E9EDF1] transition-colors duration-300">
+                    <Frown size={14} className="text-[#6C757D]" />
+                    <span>Sad Days</span>
                   </div>
                 </div>
               </div>
             </div>
             
-            {/* Card 5 - Write a text */}
-            <div className="relative sm:mt-12 lg:mt-6">
-              <div className="create-card">
-                <div className="create-card-content">
+            {/* Card 5 - Love Notes */}
+            <div className="relative sm:mt-12 lg:mt-6 group">
+              <div className="create-card group-hover:shadow-lg transition-all duration-500 transform group-hover:-translate-y-1">
+                <div className="create-card-content overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1485322551133-3a4c27a9d925?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" 
-                    alt="Write a text" 
-                    className="w-full h-40 object-cover"
+                    src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" 
+                    alt="Love Notes" 
+                    className="w-full h-40 object-cover transform group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="create-card-label mx-auto">
-                    <PenLine size={14} />
-                    <span>Write a text</span>
+                  <div className="create-card-label mx-auto group-hover:bg-[#FFE6ED] transition-colors duration-300">
+                    <Heart size={14} className="text-[#FC5C8D]" />
+                    <span>Love Notes</span>
                   </div>
                 </div>
               </div>
             </div>
             
-            {/* Card 6 - Write a story */}
-            <div className="relative sm:mt-2">
-              <div className="create-card">
-                <div className="create-card-content">
+            {/* Card 6 - Exciting Ideas */}
+            <div className="relative sm:mt-2 group">
+              <div className="create-card group-hover:shadow-lg transition-all duration-500 transform group-hover:-translate-y-1">
+                <div className="create-card-content overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1511376777868-611b54f68947?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" 
-                    alt="Write a story" 
-                    className="w-full h-40 object-cover"
+                    src="https://images.unsplash.com/photo-1604076913837-52ab5629fba9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" 
+                    alt="Exciting Ideas" 
+                    className="w-full h-40 object-cover transform group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="create-card-label mx-auto">
-                    <BookText size={14} />
-                    <span>Write a story</span>
+                  <div className="create-card-label mx-auto group-hover:bg-[#FFF0E5] transition-colors duration-300">
+                    <Laugh size={14} className="text-[#FF8F5C]" />
+                    <span>Exciting Ideas</span>
                   </div>
                 </div>
               </div>
             </div>
             
-            {/* Card 7 - Code */}
-            <div className="relative sm:mt-10 lg:mt-2 col-span-1 sm:col-span-2 lg:col-span-3 max-w-sm mx-auto">
-              <div className="create-card">
-                <div className="create-card-content">
+            {/* Card 7 - Stormy Thoughts */}
+            <div className="relative sm:mt-10 lg:mt-2 col-span-1 sm:col-span-2 lg:col-span-3 max-w-sm mx-auto group">
+              <div className="create-card group-hover:shadow-lg transition-all duration-500 transform group-hover:-translate-y-1">
+                <div className="create-card-content overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" 
-                    alt="Code" 
-                    className="w-full h-40 object-cover"
+                    src="https://images.unsplash.com/photo-1527482797697-8795b05a13fe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" 
+                    alt="Stormy Thoughts" 
+                    className="w-full h-40 object-cover transform group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="create-card-label mx-auto">
-                    <Code size={14} />
-                    <span>Code</span>
+                  <div className="create-card-label mx-auto group-hover:bg-[#E6EEFF] transition-colors duration-300">
+                    <CloudLightning size={14} className="text-[#5271FF]" />
+                    <span>Stormy Thoughts</span>
                   </div>
                 </div>
               </div>

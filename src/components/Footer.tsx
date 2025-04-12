@@ -31,11 +31,6 @@ const Footer = () => {
                   Pricing
                 </Link>
               </li>
-              <li>
-                <Link to="/roadmap" className="text-[#54595F] hover:text-[#054A40] transition-colors">
-                  Roadmap
-                </Link>
-              </li>
             </ul>
           </div>
 
