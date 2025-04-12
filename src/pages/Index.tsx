@@ -4,15 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { 
-  ArrowRight, 
-  Check, 
-  Sparkles,
-  FileText,
-  Users,
-  Layout,
-  Calendar
-} from 'lucide-react';
+import { Briefcase, Calendar, Tag, CheckCircle, Settings, Shield, Smartphone, Clock } from 'lucide-react';
 
 const Index = () => {
   return (
@@ -20,231 +12,228 @@ const Index = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-20 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-white to-[#F6F6F7] dark:from-[#1A1F2C] dark:to-[#222222]">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center mb-12 md:mb-16">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#333333] dark:text-white mb-6 leading-tight">
-              Visual collaboration made easy
-            </h1>
-            <p className="text-lg md:text-xl text-[#555555] dark:text-[#9F9EA1] mb-8 max-w-3xl mx-auto">
-              Create beautiful documentation, draw diagrams, and collaborate with your team visually all in one place.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button asChild size="lg" className="bg-[#9b87f5] hover:bg-[#7E69AB] text-white rounded-md px-8 py-6 h-auto">
-                <Link to="/signup">Get started for free</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="border-[#C8C8C9] text-[#555555] hover:bg-[#F1F1F1] dark:border-[#403E43] dark:text-white dark:hover:bg-[#333333] rounded-md px-8 py-6 h-auto">
-                <Link to="/features">See how it works</Link>
-              </Button>
-            </div>
+      <section className="gradient-bg text-white py-20 md:py-32">
+        <div className="container mx-auto px-6 text-center">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            Organize Your Thoughts, Effortlessly
+          </h1>
+          <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-white/90">
+            A beautiful, intuitive notes app that helps you capture ideas, make lists, and stay organized—anytime, anywhere.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild size="lg" className="btn-pastel-secondary bg-white text-pastel-pink-dark">
+              <Link to="/signup">Get Started — Free</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="text-white border-white hover:bg-white/10">
+              <Link to="/login">Sign In</Link>
+            </Button>
           </div>
           
-          {/* Hero Image */}
-          <div className="relative max-w-5xl mx-auto">
-            <div className="rounded-xl overflow-hidden shadow-lg">
+          {/* App Preview */}
+          <div className="mt-16 relative">
+            <div className="max-w-5xl mx-auto rounded-lg shadow-2xl overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80&w=1600" 
-                alt="PastelNotes Interface" 
-                className="w-full object-cover rounded-xl"
+                src="https://images.unsplash.com/photo-1527219525722-f9767a7f2884?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2073&q=80" 
+                alt="PastelNotes App" 
+                className="w-full object-cover border border-white/20"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-xl"></div>
-            </div>
-            
-            {/* Floating UI elements for visual appeal */}
-            <div className="absolute -top-6 -left-10 w-44 h-32 bg-white dark:bg-[#222222] p-4 rounded-lg shadow-lg transform -rotate-6 hidden md:block">
-              <h3 className="text-sm font-medium text-[#333333] dark:text-white">Project Notes</h3>
-              <p className="text-xs text-[#555555] dark:text-[#9F9EA1] mt-2">Our team's latest brainstorming session ideas...</p>
-            </div>
-            <div className="absolute -bottom-4 -right-6 w-48 h-28 bg-white dark:bg-[#222222] p-4 rounded-lg shadow-lg transform rotate-3 hidden md:block">
-              <h3 className="text-sm font-medium text-[#333333] dark:text-white">Meeting Agenda</h3>
-              <p className="text-xs text-[#555555] dark:text-[#9F9EA1] mt-2">1. Review designs<br/>2. Discuss timeline<br/>3. Assign tasks</p>
-            </div>
-          </div>
-
-          {/* Trusted by section */}
-          <div className="mt-20 text-center">
-            <p className="text-sm text-[#8A898C] dark:text-[#9F9EA1] mb-6">TRUSTED BY TEAMS AT</p>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-70">
-              <div className="h-6 text-[#8A898C] dark:text-[#9F9EA1] font-medium">Microsoft</div>
-              <div className="h-6 text-[#8A898C] dark:text-[#9F9EA1] font-medium">Spotify</div>
-              <div className="h-6 text-[#8A898C] dark:text-[#9F9EA1] font-medium">Amazon</div>
-              <div className="h-6 text-[#8A898C] dark:text-[#9F9EA1] font-medium">Shopify</div>
-              <div className="h-6 text-[#8A898C] dark:text-[#9F9EA1] font-medium">Slack</div>
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[rgba(0,0,0,0.3)]"></div>
             </div>
           </div>
         </div>
       </section>
       
       {/* Features Section */}
-      <section className="py-24 bg-white dark:bg-[#1A1F2C]">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#333333] dark:text-white mb-6">
-              Tools for every kind of work
-            </h2>
-            <p className="text-lg text-[#555555] dark:text-[#9F9EA1] max-w-2xl mx-auto">
-              PastelNotes gives your team powerful tools to organize and collaborate on any project.
-            </p>
-          </div>
+          <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12">
+            Everything You Need in a Notes App
+          </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Feature 1 */}
-            <div className="bg-[#F6F6F7] dark:bg-[#222222] rounded-lg p-8">
-              <div className="p-3 rounded-full bg-[#E5DEFF] dark:bg-[#403E43] inline-flex mb-6">
-                <FileText className="h-6 w-6 text-[#8B5CF6] dark:text-[#D6BCFA]" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="flex flex-col items-center text-center p-6 rounded-lg hover:shadow-md transition-shadow">
+              <div className="bg-pastel-pink rounded-full p-4 mb-4">
+                <Tag className="h-6 w-6 text-pastel-pink-dark" />
               </div>
-              <h3 className="text-xl font-semibold text-[#333333] dark:text-white mb-3">
-                Smart Documents
-              </h3>
-              <p className="text-[#555555] dark:text-[#9F9EA1]">
-                Create beautiful, smart documents with rich content that's easy to read and edit.
+              <h3 className="text-xl font-medium mb-2">Smart Organization</h3>
+              <p className="text-gray-600">
+                Tag, pin, and organize your notes for quick and easy access whenever you need them.
               </p>
             </div>
             
-            {/* Feature 2 */}
-            <div className="bg-[#F6F6F7] dark:bg-[#222222] rounded-lg p-8">
-              <div className="p-3 rounded-full bg-[#FFDEE2] dark:bg-[#403E43] inline-flex mb-6">
-                <Layout className="h-6 w-6 text-[#D946EF] dark:text-[#D6BCFA]" />
+            <div className="flex flex-col items-center text-center p-6 rounded-lg hover:shadow-md transition-shadow">
+              <div className="bg-pastel-blue rounded-full p-4 mb-4">
+                <CheckCircle className="h-6 w-6 text-pastel-blue-dark" />
               </div>
-              <h3 className="text-xl font-semibold text-[#333333] dark:text-white mb-3">
-                Organized Workspaces
-              </h3>
-              <p className="text-[#555555] dark:text-[#9F9EA1]">
-                Keep everything organized in custom workspaces designed to fit your workflow.
+              <h3 className="text-xl font-medium mb-2">Task Lists</h3>
+              <p className="text-gray-600">
+                Create interactive checklists for shopping, to-dos, and more with easy-to-use checkboxes.
               </p>
             </div>
             
-            {/* Feature 3 */}
-            <div className="bg-[#F6F6F7] dark:bg-[#222222] rounded-lg p-8">
-              <div className="p-3 rounded-full bg-[#FDE1D3] dark:bg-[#403E43] inline-flex mb-6">
-                <Calendar className="h-6 w-6 text-[#F97316] dark:text-[#FEC6A1]" />
+            <div className="flex flex-col items-center text-center p-6 rounded-lg hover:shadow-md transition-shadow">
+              <div className="bg-pastel-purple rounded-full p-4 mb-4">
+                <Calendar className="h-6 w-6 text-pastel-purple-dark" />
               </div>
-              <h3 className="text-xl font-semibold text-[#333333] dark:text-white mb-3">
-                Project Planning
-              </h3>
-              <p className="text-[#555555] dark:text-[#9F9EA1]">
-                Plan projects with interactive timelines and task management built in.
+              <h3 className="text-xl font-medium mb-2">Rich Formatting</h3>
+              <p className="text-gray-600">
+                Bold, italic, lists, and more—format your notes exactly how you want them to look.
               </p>
             </div>
             
-            {/* Feature 4 */}
-            <div className="bg-[#F6F6F7] dark:bg-[#222222] rounded-lg p-8">
-              <div className="p-3 rounded-full bg-[#D3E4FD] dark:bg-[#403E43] inline-flex mb-6">
-                <Users className="h-6 w-6 text-[#0EA5E9] dark:text-[#0EA5E9]" />
+            <div className="flex flex-col items-center text-center p-6 rounded-lg hover:shadow-md transition-shadow">
+              <div className="bg-pastel-green rounded-full p-4 mb-4">
+                <Shield className="h-6 w-6 text-pastel-green-dark" />
               </div>
-              <h3 className="text-xl font-semibold text-[#333333] dark:text-white mb-3">
-                Team Collaboration
-              </h3>
-              <p className="text-[#555555] dark:text-[#9F9EA1]">
-                Work together in real-time with your team from anywhere in the world.
-              </p>
-            </div>
-            
-            {/* Feature 5 */}
-            <div className="bg-[#F6F6F7] dark:bg-[#222222] rounded-lg p-8">
-              <div className="p-3 rounded-full bg-[#F2FCE2] dark:bg-[#403E43] inline-flex mb-6">
-                <Sparkles className="h-6 w-6 text-[#0FA0CE] dark:text-[#D3E4FD]" />
-              </div>
-              <h3 className="text-xl font-semibold text-[#333333] dark:text-white mb-3">
-                Smart Design Tools
-              </h3>
-              <p className="text-[#555555] dark:text-[#9F9EA1]">
-                Create beautiful diagrams with intuitive design tools that anyone can use.
+              <h3 className="text-xl font-medium mb-2">Secure Sync</h3>
+              <p className="text-gray-600">
+                Your notes safely sync across all your devices, so they're always up to date.
               </p>
             </div>
           </div>
         </div>
       </section>
       
-      {/* Social Proof Section */}
-      <section className="py-24 bg-[#F6F6F7] dark:bg-[#222222]">
+      {/* Color Palette Section */}
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#333333] dark:text-white mb-6">
-              Loved by teams everywhere
-            </h2>
-            <p className="text-lg text-[#555555] dark:text-[#9F9EA1]">
-              See why teams choose PastelNotes for their visual collaboration needs.
-            </p>
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            <div className="md:w-1/2">
+              <h2 className="text-3xl md:text-4xl font-semibold mb-6">
+                Beautiful & Customizable
+              </h2>
+              <p className="text-lg text-gray-600 mb-6">
+                Express yourself with our soothing pastel color palette. Customize each note with colors that help you categorize, prioritize, or simply make your notes look beautiful.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <div className="w-12 h-12 rounded-full bg-pastel-pink"></div>
+                <div className="w-12 h-12 rounded-full bg-pastel-blue"></div>
+                <div className="w-12 h-12 rounded-full bg-pastel-green"></div>
+                <div className="w-12 h-12 rounded-full bg-pastel-purple"></div>
+                <div className="w-12 h-12 rounded-full bg-pastel-yellow"></div>
+              </div>
+            </div>
+            
+            <div className="md:w-1/2 grid grid-cols-2 gap-4">
+              <div className="bg-pastel-pink p-6 rounded-lg shadow-sm">
+                <h3 className="font-medium mb-2">Project Ideas</h3>
+                <p className="text-sm">Building a website, learning React, mobile app concepts...</p>
+              </div>
+              
+              <div className="bg-pastel-blue p-6 rounded-lg shadow-sm">
+                <h3 className="font-medium mb-2">Shopping List</h3>
+                <p className="text-sm">Milk, eggs, bread, apples, chocolate...</p>
+              </div>
+              
+              <div className="bg-pastel-yellow p-6 rounded-lg shadow-sm">
+                <h3 className="font-medium mb-2">Important!</h3>
+                <p className="text-sm">Don't forget mom's birthday next week!</p>
+              </div>
+              
+              <div className="bg-pastel-green p-6 rounded-lg shadow-sm">
+                <h3 className="font-medium mb-2">Meeting Notes</h3>
+                <p className="text-sm">Discuss new project timeline, budget review...</p>
+              </div>
+            </div>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Testimonial 1 */}
-            <div className="bg-white dark:bg-[#1A1F2C] rounded-lg p-8 shadow-sm">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 rounded-full bg-[#E5DEFF] dark:bg-[#403E43] flex items-center justify-center mr-4">
-                  <span className="font-medium text-[#8B5CF6] dark:text-[#D6BCFA]">AT</span>
-                </div>
-                <div>
-                  <h4 className="font-medium text-[#333333] dark:text-white">Alex Thompson</h4>
-                  <p className="text-sm text-[#8A898C] dark:text-[#9F9EA1]">Product Manager at Airbnb</p>
-                </div>
-              </div>
-              <p className="text-[#555555] dark:text-[#9F9EA1]">
-                "PastelNotes has transformed how our team collaborates. We can now easily organize our thoughts and keep everyone on the same page."
+        </div>
+      </section>
+      
+      {/* PWA Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row-reverse items-center gap-12">
+            <div className="md:w-1/2">
+              <h2 className="text-3xl md:text-4xl font-semibold mb-6">
+                Works Offline & Feels Native
+              </h2>
+              <p className="text-lg text-gray-600 mb-6">
+                PastelNotes works seamlessly offline, so you can access and edit your notes anywhere, anytime—even without an internet connection.
               </p>
+              <ul className="space-y-4">
+                <li className="flex items-start">
+                  <div className="bg-pastel-pink bg-opacity-20 p-1 rounded mr-3 mt-1">
+                    <Smartphone className="h-5 w-5 text-pastel-pink-dark" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium">Install on Any Device</h3>
+                    <p className="text-sm text-gray-600">Works like a native app on your phone, tablet, or desktop.</p>
+                  </div>
+                </li>
+                
+                <li className="flex items-start">
+                  <div className="bg-pastel-blue bg-opacity-20 p-1 rounded mr-3 mt-1">
+                    <Clock className="h-5 w-5 text-pastel-blue-dark" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium">Fast & Responsive</h3>
+                    <p className="text-sm text-gray-600">Loads instantly and responds quickly to your inputs.</p>
+                  </div>
+                </li>
+                
+                <li className="flex items-start">
+                  <div className="bg-pastel-green bg-opacity-20 p-1 rounded mr-3 mt-1">
+                    <Settings className="h-5 w-5 text-pastel-green-dark" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium">Automatic Sync</h3>
+                    <p className="text-sm text-gray-600">Changes sync across all devices when you're back online.</p>
+                  </div>
+                </li>
+              </ul>
             </div>
             
-            {/* Testimonial 2 */}
-            <div className="bg-white dark:bg-[#1A1F2C] rounded-lg p-8 shadow-sm">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 rounded-full bg-[#FFDEE2] dark:bg-[#403E43] flex items-center justify-center mr-4">
-                  <span className="font-medium text-[#D946EF] dark:text-[#D6BCFA]">SJ</span>
-                </div>
-                <div>
-                  <h4 className="font-medium text-[#333333] dark:text-white">Sarah Johnson</h4>
-                  <p className="text-sm text-[#8A898C] dark:text-[#9F9EA1]">Design Lead at Spotify</p>
+            <div className="md:w-1/2 flex justify-center">
+              <div className="relative w-64 h-[500px] rounded-[2.5rem] border-[14px] border-gray-800 overflow-hidden shadow-xl">
+                <div className="absolute inset-0 bg-white">
+                  <div className="h-8 bg-gray-800"></div>
+                  <div className="h-full p-2 overflow-y-scroll">
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="bg-pastel-pink rounded-lg p-3">
+                        <h4 className="text-xs font-medium">Shopping List</h4>
+                        <p className="text-[10px] mt-1">Milk, Eggs, Bread...</p>
+                      </div>
+                      <div className="bg-pastel-blue rounded-lg p-3">
+                        <h4 className="text-xs font-medium">Meeting Notes</h4>
+                        <p className="text-[10px] mt-1">Project timeline...</p>
+                      </div>
+                      <div className="bg-pastel-yellow rounded-lg p-3">
+                        <h4 className="text-xs font-medium">Ideas</h4>
+                        <p className="text-[10px] mt-1">App concept...</p>
+                      </div>
+                      <div className="bg-pastel-purple rounded-lg p-3">
+                        <h4 className="text-xs font-medium">Books to Read</h4>
+                        <p className="text-[10px] mt-1">Science fiction...</p>
+                      </div>
+                      <div className="bg-pastel-green rounded-lg p-3">
+                        <h4 className="text-xs font-medium">Workout Plan</h4>
+                        <p className="text-[10px] mt-1">Monday: Cardio...</p>
+                      </div>
+                      <div className="bg-pastel-pink rounded-lg p-3">
+                        <h4 className="text-xs font-medium">Recipes</h4>
+                        <p className="text-[10px] mt-1">Pasta carbonara...</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <p className="text-[#555555] dark:text-[#9F9EA1]">
-                "The visual tools in PastelNotes make it so much easier to communicate design ideas and get feedback from stakeholders."
-              </p>
-            </div>
-            
-            {/* Testimonial 3 */}
-            <div className="bg-white dark:bg-[#1A1F2C] rounded-lg p-8 shadow-sm">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 rounded-full bg-[#D3E4FD] dark:bg-[#403E43] flex items-center justify-center mr-4">
-                  <span className="font-medium text-[#0EA5E9] dark:text-[#0EA5E9]">MR</span>
-                </div>
-                <div>
-                  <h4 className="font-medium text-[#333333] dark:text-white">Michael Rodriguez</h4>
-                  <p className="text-sm text-[#8A898C] dark:text-[#9F9EA1]">Engineering Manager at Shopify</p>
-                </div>
-              </div>
-              <p className="text-[#555555] dark:text-[#9F9EA1]">
-                "Our engineering team uses PastelNotes daily to plan sprints and document technical decisions. It's become an essential tool for us."
-              </p>
             </div>
           </div>
         </div>
       </section>
       
       {/* CTA Section */}
-      <section className="py-20 bg-white dark:bg-[#1A1F2C]">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto bg-gradient-to-r from-[#E5DEFF] to-[#F1F0FB] dark:from-[#2D3A4A] dark:to-[#453E40] rounded-2xl p-10 md:p-16 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#333333] dark:text-white mb-6">
-              Ready to get started?
-            </h2>
-            <p className="text-lg text-[#555555] dark:text-[#C8C8C9] mb-8 max-w-lg mx-auto">
-              Join thousands of teams that use PastelNotes to collaborate visually and get more done.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button asChild size="lg" className="bg-[#9b87f5] hover:bg-[#7E69AB] text-white rounded-md px-8 py-6 h-auto">
-                <Link to="/signup">
-                  Sign up for free
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="border-[#C8C8C9] text-[#555555] hover:bg-[#F1F1F1] dark:border-[#403E43] dark:text-white dark:hover:bg-[#333333] rounded-md px-8 py-6 h-auto">
-                <Link to="/pricing">See pricing</Link>
-              </Button>
-            </div>
-            <p className="text-sm text-[#8A898C] dark:text-[#9F9EA1] mt-6">
-              No credit card required · Free plan available
-            </p>
-          </div>
+      <section className="py-20 gradient-bg text-white">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-3xl md:text-4xl font-semibold mb-6">
+            Ready to Get Organized?
+          </h2>
+          <p className="text-lg max-w-2xl mx-auto mb-8 text-white/90">
+            Join thousands of users who've transformed how they take notes. Try PastelNotes today—it's free to get started.
+          </p>
+          <Button asChild size="lg" className="btn-pastel-secondary bg-white text-pastel-pink-dark">
+            <Link to="/signup">Create Your Free Account</Link>
+          </Button>
         </div>
       </section>
       
