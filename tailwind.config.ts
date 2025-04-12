@@ -63,13 +63,14 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Pastel color palette
+				// Pastel color palette - updated with the requested colors
 				pastel: {
-					pink: '#FEE9E9',
-					blue: '#E6EFFF',
+					pink: '#FCA591',
+					blue: '#cdeff1',
 					green: '#E9F6EF',
 					purple: '#F4E9FF',
-					yellow: '#FFF9E6',
+					yellow: '#FFFF9F',
+					beige: '#f9e8b3',
 					'pink-dark': '#D9A7B0',
 					'blue-dark': '#A7B0D9',
 					'green-dark': '#A7D9B0',
