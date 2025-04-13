@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
@@ -20,6 +19,11 @@ const signupSchema = z.object({
   confirmPassword: z.string(),
   dob: z.string().optional(),
   gender: z.enum(['male', 'female', 'other', 'prefer not to say']).optional(),
+  phoneNumber: z.string()
+    .optional()
+    .refine(val => val === undefined || val.length === 0 || /^\+?[1-9]\d{1,14}$/.test(val), {
+      message: 'Invalid phone number'
+    }),
 }).refine(data => data.password === data.confirmPassword, {
   message: "Passwords don't match",
   path: ['confirmPassword'],
@@ -40,6 +44,7 @@ const Signup = () => {
       confirmPassword: '',
       dob: '',
       gender: 'prefer not to say',
+      phoneNumber: '',
     },
   });
 
@@ -55,6 +60,7 @@ const Signup = () => {
             name: values.name,
             dob: values.dob,
             gender: values.gender,
+            phone_number: values.phoneNumber,
           }
         }
       });
@@ -210,6 +216,27 @@ const Signup = () => {
                         </div>
                       </RadioGroup>
                     </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              <FormField
+                control={form.control}
+                name="phoneNumber"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Phone Number (Optional)</FormLabel>
+                    <FormControl>
+                      <Input 
+                        type="tel" 
+                        placeholder="+1234567890" 
+                        {...field} 
+                      />
+                    </FormControl>
+                    <p className="text-xs text-gray-500">
+                      Include country code, e.g., +1 for US
+                    </p>
                     <FormMessage />
                   </FormItem>
                 )}

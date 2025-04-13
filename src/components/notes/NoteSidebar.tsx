@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { StickyNote, Pin, Archive, Trash2, Tag, Menu, X, LogOut, Settings } from 'lucide-react';
+import { StickyNote, Pin, Archive, Trash2, Tag, Menu, X, LogOut, Settings, User, Edit } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { 
@@ -16,6 +15,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -29,7 +29,13 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
   const { user, signOut } = useAuth();
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  
+  const [profileData, setProfileData] = useState({
+    name: user?.user_metadata?.name || '',
+    dob: user?.user_metadata?.dob || '',
+    gender: user?.user_metadata?.gender || 'prefer not to say',
+    phoneNumber: user?.user_metadata?.phone_number || '',
+  });
+
   const isActive = (path: string) => {
     return location.pathname === path;
   };
@@ -68,9 +74,42 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
     }
   };
 
+  const handleProfileUpdate = async () => {
+    try {
+      const { data, error: metadataError } = await supabase.auth.updateUser({
+        data: {
+          name: profileData.name,
+          dob: profileData.dob,
+          gender: profileData.gender,
+          phone_number: profileData.phoneNumber,
+        }
+      });
+
+      const { error: profileError } = await supabase
+        .from('profiles')
+        .update({
+          name: profileData.name,
+          dob: profileData.dob ? new Date(profileData.dob) : null,
+          gender: profileData.gender,
+          phone_number: profileData.phoneNumber,
+        })
+        .eq('id', user?.id);
+
+      if (metadataError || profileError) {
+        toast.error(metadataError?.message || profileError?.message);
+        return;
+      }
+
+      toast.success('Profile updated successfully');
+      setIsProfileOpen(false);
+    } catch (error) {
+      console.error('Profile update error:', error);
+      toast.error('Failed to update profile');
+    }
+  };
+
   return (
     <>
-      {/* Mobile sidebar backdrop */}
       {isOpen && (
         <div 
           className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
@@ -79,7 +118,6 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
         />
       )}
 
-      {/* Sidebar toggle button (mobile) */}
       <Button
         variant="ghost"
         size="icon"
@@ -90,7 +128,6 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
         {isOpen ? <X size={24} /> : <Menu size={24} />}
       </Button>
       
-      {/* Sidebar */}
       <aside 
         className={cn(
           "fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-gray-200 transition-transform duration-300 ease-in-out transform",
@@ -181,7 +218,6 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
         </div>
       </aside>
 
-      {/* Settings Dialog */}
       <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
         <DialogContent>
           <DialogHeader>
@@ -224,7 +260,6 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
         </DialogContent>
       </Dialog>
 
-      {/* Profile Dialog */}
       <Dialog open={isProfileOpen} onOpenChange={setIsProfileOpen}>
         <DialogContent>
           <DialogHeader>
@@ -237,18 +272,43 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
           <div className="space-y-4 py-4">
             <div className="space-y-2">
               <Label htmlFor="name">Name</Label>
-              <Input id="name" defaultValue={user?.user_metadata?.name || ''} />
+              <Input 
+                id="name" 
+                value={profileData.name}
+                onChange={(e) => setProfileData({...profileData, name: e.target.value})}
+              />
             </div>
             
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" defaultValue={user?.email || ''} disabled />
+              <Input 
+                id="email" 
+                type="email" 
+                value={user?.email || ''} 
+                disabled 
+              />
               <p className="text-xs text-gray-500">Email cannot be changed</p>
             </div>
             
             <div className="space-y-2">
               <Label htmlFor="dob">Date of Birth</Label>
-              <Input id="dob" type="date" defaultValue={user?.user_metadata?.dob || ''} />
+              <Input 
+                id="dob" 
+                type="date" 
+                value={profileData.dob}
+                onChange={(e) => setProfileData({...profileData, dob: e.target.value})}
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="phone">Phone Number</Label>
+              <Input 
+                id="phone" 
+                type="tel" 
+                placeholder="+1234567890"
+                value={profileData.phoneNumber}
+                onChange={(e) => setProfileData({...profileData, phoneNumber: e.target.value})}
+              />
             </div>
             
             <div className="space-y-2">
@@ -256,7 +316,8 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
               <select 
                 id="gender" 
                 className="w-full p-2 border rounded-md"
-                defaultValue={user?.user_metadata?.gender || 'prefer not to say'}
+                value={profileData.gender}
+                onChange={(e) => setProfileData({...profileData, gender: e.target.value})}
               >
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -268,10 +329,7 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
           
           <DialogFooter>
             <Button onClick={() => setIsProfileOpen(false)} variant="outline">Cancel</Button>
-            <Button onClick={() => {
-              toast.success('Profile updated successfully');
-              setIsProfileOpen(false);
-            }}>Save Changes</Button>
+            <Button onClick={handleProfileUpdate}>Save Changes</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
