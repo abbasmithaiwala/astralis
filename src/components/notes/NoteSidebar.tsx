@@ -89,7 +89,7 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
         .from('profiles')
         .update({
           name: profileData.name,
-          dob: profileData.dob ? new Date(profileData.dob) : null,
+          dob: profileData.dob,
           gender: profileData.gender,
           phone_number: profileData.phoneNumber,
         })
