@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import NoteCard, { NoteProps } from '@/components/notes/NoteCard';
 import CreateNoteButton from '@/components/notes/CreateNoteButton';
 import NoteSidebar from '@/components/notes/NoteSidebar';
@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import * as NoteService from '@/services/noteService';
+import { supabase } from '@/integrations/supabase/client';
 
 const NotesPage: React.FC = () => {
   const [notes, setNotes] = useState<NoteProps[]>([]);
@@ -23,109 +24,221 @@ const NotesPage: React.FC = () => {
   const [isGridView, setIsGridView] = useState(true);
   const [selectedNote, setSelectedNote] = useState<NoteProps | null>(null);
   const [isEditorOpen, setIsEditorOpen] = useState(false);
+  const [user, setUser] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { view, tag } = useParams<{ view?: string; tag?: string }>();
   const location = useLocation();
+  const navigate = useNavigate();
 
+  // Check for authentication
   useEffect(() => {
-    loadNotes();
-    setTags(NoteService.getAllTags());
-  }, [location.pathname]);
+    const checkAuth = async () => {
+      const { data } = await supabase.auth.getSession();
+      if (!data.session) {
+        navigate('/login');
+        return;
+      }
+      setUser(data.session.user);
+      setIsLoading(false);
+    };
 
-  const loadNotes = () => {
+    checkAuth();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        if (event === 'SIGNED_OUT') {
+          navigate('/login');
+        } else if (session) {
+          setUser(session.user);
+          setIsLoading(false);
+        }
+      }
+    );
+
+    return () => subscription.unsubscribe();
+  }, [navigate]);
+
+  // Load data when route or user changes
+  useEffect(() => {
+    if (!user) return;
+    
+    const loadData = async () => {
+      setIsLoading(true);
+      await loadNotes();
+      const allTags = await NoteService.getAllTags();
+      setTags(allTags);
+      setIsLoading(false);
+    };
+    
+    loadData();
+  }, [location.pathname, user]);
+
+  const loadNotes = async () => {
     if (view === 'archived') {
-      setArchivedNotes(NoteService.getArchivedNotes());
+      const archived = await NoteService.getArchivedNotes();
+      setArchivedNotes(archived);
     } else if (view === 'trash') {
-      setDeletedNotes(NoteService.getDeletedNotes());
+      const trashed = await NoteService.getDeletedNotes();
+      setDeletedNotes(trashed);
+    } else if (tag) {
+      const taggedNotes = await NoteService.getNotesByTag(tag);
+      setNotes(taggedNotes);
     } else {
-      const allNotes = NoteService.getNotes();
+      const allNotes = await NoteService.getNotes();
+      
+      // Fetch tags for each note
+      for (let i = 0; i < allNotes.length; i++) {
+        const noteTags = await NoteService.getTagsForNote(allNotes[i].id);
+        allNotes[i].tags = noteTags;
+      }
+      
       setNotes(allNotes);
     }
   };
 
-  const handleCreateNote = (note: Partial<NoteProps>) => {
-    const newNote = NoteService.createNote(note);
-    setNotes(prev => [newNote, ...prev]);
-    setTags(NoteService.getAllTags());
-    toast.success('Note created successfully');
-  };
-
-  const handleUpdateNote = (note: Partial<NoteProps>) => {
-    const updatedNote = NoteService.updateNote(note);
-    if (updatedNote) {
-      setNotes(prev => 
-        prev.map(n => n.id === updatedNote.id ? updatedNote : n)
-      );
-      setSelectedNote(null);
-      toast.success('Note updated successfully');
+  const handleCreateNote = async (note: Partial<NoteProps>) => {
+    try {
+      const newNote = await NoteService.createNote(note);
+      setNotes(prev => [newNote, ...prev]);
+      
+      // Refresh tags list
+      const allTags = await NoteService.getAllTags();
+      setTags(allTags);
+      
+      toast.success('Note created successfully');
+    } catch (error) {
+      console.error('Error creating note:', error);
+      toast.error('Failed to create note');
     }
   };
 
-  const handlePinNote = (id: string) => {
-    const updatedNote = NoteService.togglePinNote(id);
-    if (updatedNote) {
-      setNotes(prev => [...prev.filter(n => n.id !== id), updatedNote]);
-      toast.success(updatedNote.isPinned ? 'Note pinned' : 'Note unpinned');
-    }
-  };
-
-  const handleArchiveNote = (id: string) => {
-    if (NoteService.archiveNote(id)) {
-      setNotes(prev => prev.filter(n => n.id !== id));
-      loadNotes();
-      toast.success('Note archived');
-    }
-  };
-
-  const handleUnarchiveNote = (id: string) => {
-    if (NoteService.unarchiveNote(id)) {
-      setArchivedNotes(prev => prev.filter(n => n.id !== id));
-      loadNotes();
-      toast.success('Note restored from archive');
-    }
-  };
-
-  const handleDeleteNote = (id: string) => {
-    const fromArchive = view === 'archived';
-    if (NoteService.deleteNote(id, fromArchive)) {
-      if (fromArchive) {
-        setArchivedNotes(prev => prev.filter(n => n.id !== id));
-      } else {
-        setNotes(prev => prev.filter(n => n.id !== id));
+  const handleUpdateNote = async (note: Partial<NoteProps>) => {
+    try {
+      const updatedNote = await NoteService.updateNote(note);
+      if (updatedNote) {
+        setNotes(prev => 
+          prev.map(n => n.id === updatedNote.id ? updatedNote : n)
+        );
+        setSelectedNote(null);
+        
+        // Refresh tags list as tags might have changed
+        const allTags = await NoteService.getAllTags();
+        setTags(allTags);
+        
+        toast.success('Note updated successfully');
       }
-      loadNotes();
-      toast.success('Note moved to trash');
+    } catch (error) {
+      console.error('Error updating note:', error);
+      toast.error('Failed to update note');
     }
   };
 
-  const handleRestoreNote = (id: string) => {
-    if (NoteService.restoreNote(id)) {
-      setDeletedNotes(prev => prev.filter(n => n.id !== id));
-      loadNotes();
-      toast.success('Note restored');
+  const handlePinNote = async (id: string) => {
+    try {
+      const updatedNote = await NoteService.togglePinNote(id);
+      if (updatedNote) {
+        setNotes(prev => [...prev.filter(n => n.id !== id), updatedNote]);
+        toast.success(updatedNote.isPinned ? 'Note pinned' : 'Note unpinned');
+      }
+    } catch (error) {
+      console.error('Error pinning note:', error);
+      toast.error('Failed to pin/unpin note');
     }
   };
 
-  const handlePermanentDelete = (id: string) => {
-    if (NoteService.permanentlyDeleteNote(id)) {
-      setDeletedNotes(prev => prev.filter(n => n.id !== id));
-      toast.success('Note permanently deleted');
+  const handleArchiveNote = async (id: string) => {
+    try {
+      if (await NoteService.archiveNote(id)) {
+        setNotes(prev => prev.filter(n => n.id !== id));
+        await loadNotes();
+        toast.success('Note archived');
+      }
+    } catch (error) {
+      console.error('Error archiving note:', error);
+      toast.error('Failed to archive note');
     }
   };
 
-  const handleEmptyTrash = () => {
-    if (NoteService.emptyTrash()) {
-      setDeletedNotes([]);
-      toast.success('Trash emptied');
+  const handleUnarchiveNote = async (id: string) => {
+    try {
+      if (await NoteService.unarchiveNote(id)) {
+        setArchivedNotes(prev => prev.filter(n => n.id !== id));
+        await loadNotes();
+        toast.success('Note restored from archive');
+      }
+    } catch (error) {
+      console.error('Error unarchiving note:', error);
+      toast.error('Failed to restore note from archive');
     }
   };
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleDeleteNote = async (id: string) => {
+    try {
+      const fromArchive = view === 'archived';
+      if (await NoteService.deleteNote(id, fromArchive)) {
+        if (fromArchive) {
+          setArchivedNotes(prev => prev.filter(n => n.id !== id));
+        } else {
+          setNotes(prev => prev.filter(n => n.id !== id));
+        }
+        await loadNotes();
+        toast.success('Note moved to trash');
+      }
+    } catch (error) {
+      console.error('Error deleting note:', error);
+      toast.error('Failed to move note to trash');
+    }
+  };
+
+  const handleRestoreNote = async (id: string) => {
+    try {
+      if (await NoteService.restoreNote(id)) {
+        setDeletedNotes(prev => prev.filter(n => n.id !== id));
+        await loadNotes();
+        toast.success('Note restored');
+      }
+    } catch (error) {
+      console.error('Error restoring note:', error);
+      toast.error('Failed to restore note');
+    }
+  };
+
+  const handlePermanentDelete = async (id: string) => {
+    try {
+      if (await NoteService.permanentlyDeleteNote(id)) {
+        setDeletedNotes(prev => prev.filter(n => n.id !== id));
+        toast.success('Note permanently deleted');
+      }
+    } catch (error) {
+      console.error('Error permanently deleting note:', error);
+      toast.error('Failed to permanently delete note');
+    }
+  };
+
+  const handleEmptyTrash = async () => {
+    try {
+      if (await NoteService.emptyTrash()) {
+        setDeletedNotes([]);
+        toast.success('Trash emptied');
+      }
+    } catch (error) {
+      console.error('Error emptying trash:', error);
+      toast.error('Failed to empty trash');
+    }
+  };
+
+  const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      const results = NoteService.searchNotes(searchQuery);
-      setSearchResults(results);
-      setIsSearching(true);
+      try {
+        const results = await NoteService.searchNotes(searchQuery);
+        setSearchResults(results);
+        setIsSearching(true);
+      } catch (error) {
+        console.error('Error searching notes:', error);
+        toast.error('Failed to search notes');
+      }
     }
   };
 
@@ -158,7 +271,7 @@ const NotesPage: React.FC = () => {
     if (view === 'archived') return archivedNotes;
     if (view === 'trash') return deletedNotes;
     if (view === 'pinned') return notes.filter(note => note.isPinned);
-    if (tag) return NoteService.getNotesByTag(tag);
+    if (tag) return notes;
 
     return notes;
   };
@@ -190,6 +303,14 @@ const NotesPage: React.FC = () => {
                    view === 'pinned' ? 'Pinned Notes' :
                    tag ? `Tag: ${tag}` :
                    isSearching ? 'Search Results' : 'All Notes';
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-pulse text-lg">Loading...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex">

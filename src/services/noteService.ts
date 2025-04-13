@@ -1,86 +1,30 @@
 
-// This is a mock service that will be replaced with Supabase integration
 import { v4 as uuidv4 } from 'uuid';
 import type { NoteProps } from '@/components/notes/NoteCard';
-
-// Local storage keys
-const NOTES_STORAGE_KEY = 'pastel-notes-data';
-const ARCHIVED_NOTES_KEY = 'pastel-notes-archived';
-const TRASH_NOTES_KEY = 'pastel-notes-trash';
-
-// Sample notes data
-const sampleNotes: NoteProps[] = [
-  {
-    id: uuidv4(),
-    title: 'Welcome to PastelNotes',
-    content: 'This is your first note. You can edit, pin, archive, or delete it. Try adding some tags too!',
-    isPinned: true,
-    tags: ['welcome', 'getting-started'],
-    color: 'pink',
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-  {
-    id: uuidv4(),
-    title: 'Shopping List',
-    content: '- Milk\n- Eggs\n- Bread\n- Apples\n- Chocolate',
-    isPinned: false,
-    tags: ['shopping'],
-    color: 'blue',
-    createdAt: new Date(Date.now() - 86400000), // 1 day ago
-    updatedAt: new Date(Date.now() - 86400000),
-  },
-  {
-    id: uuidv4(),
-    title: 'Project Ideas',
-    content: '1. Build a portfolio website\n2. Create a recipe app\n3. Learn a new framework',
-    isPinned: false,
-    tags: ['ideas', 'projects'],
-    color: 'green',
-    createdAt: new Date(Date.now() - 172800000), // 2 days ago
-    updatedAt: new Date(Date.now() - 172800000),
-  },
-  {
-    id: uuidv4(),
-    title: 'Upcoming Meetings',
-    content: '- Team standup: Monday 9am\n- Client presentation: Tuesday 2pm\n- Project review: Friday 11am',
-    isPinned: false,
-    color: 'purple',
-    createdAt: new Date(Date.now() - 259200000), // 3 days ago
-    updatedAt: new Date(Date.now() - 259200000),
-  },
-  {
-    id: uuidv4(),
-    title: '',
-    content: 'Remember to call mom on her birthday next week!',
-    isPinned: false,
-    color: 'yellow',
-    createdAt: new Date(Date.now() - 345600000), // 4 days ago
-    updatedAt: new Date(Date.now() - 345600000),
-  },
-];
-
-// Initialize local storage with sample data if empty
-const initializeLocalStorage = () => {
-  if (!localStorage.getItem(NOTES_STORAGE_KEY)) {
-    localStorage.setItem(NOTES_STORAGE_KEY, JSON.stringify(sampleNotes));
-  }
-  
-  if (!localStorage.getItem(ARCHIVED_NOTES_KEY)) {
-    localStorage.setItem(ARCHIVED_NOTES_KEY, JSON.stringify([]));
-  }
-  
-  if (!localStorage.getItem(TRASH_NOTES_KEY)) {
-    localStorage.setItem(TRASH_NOTES_KEY, JSON.stringify([]));
-  }
-};
+import { supabase } from '@/integrations/supabase/client';
 
 // Get all notes
-export const getNotes = (): NoteProps[] => {
-  initializeLocalStorage();
+export const getNotes = async (): Promise<NoteProps[]> => {
   try {
-    const notes = localStorage.getItem(NOTES_STORAGE_KEY);
-    return notes ? JSON.parse(notes) : [];
+    const { data: notes, error } = await supabase
+      .from('notes')
+      .select('*')
+      .eq('is_archived', false)
+      .eq('is_trashed', false)
+      .order('updated_at', { ascending: false });
+    
+    if (error) throw error;
+    
+    return notes.map(note => ({
+      id: note.id,
+      title: note.title || '',
+      content: note.content || '',
+      isPinned: note.is_pinned,
+      tags: [], // We'll fetch tags separately
+      color: note.color,
+      createdAt: new Date(note.created_at),
+      updatedAt: new Date(note.updated_at),
+    }));
   } catch (error) {
     console.error('Error fetching notes:', error);
     return [];
@@ -88,11 +32,27 @@ export const getNotes = (): NoteProps[] => {
 };
 
 // Get archived notes
-export const getArchivedNotes = (): NoteProps[] => {
-  initializeLocalStorage();
+export const getArchivedNotes = async (): Promise<NoteProps[]> => {
   try {
-    const notes = localStorage.getItem(ARCHIVED_NOTES_KEY);
-    return notes ? JSON.parse(notes) : [];
+    const { data: notes, error } = await supabase
+      .from('notes')
+      .select('*')
+      .eq('is_archived', true)
+      .eq('is_trashed', false)
+      .order('updated_at', { ascending: false });
+    
+    if (error) throw error;
+    
+    return notes.map(note => ({
+      id: note.id,
+      title: note.title || '',
+      content: note.content || '',
+      isPinned: note.is_pinned,
+      tags: [], // We'll fetch tags separately
+      color: note.color,
+      createdAt: new Date(note.created_at),
+      updatedAt: new Date(note.updated_at),
+    }));
   } catch (error) {
     console.error('Error fetching archived notes:', error);
     return [];
@@ -100,11 +60,26 @@ export const getArchivedNotes = (): NoteProps[] => {
 };
 
 // Get deleted notes
-export const getDeletedNotes = (): NoteProps[] => {
-  initializeLocalStorage();
+export const getDeletedNotes = async (): Promise<NoteProps[]> => {
   try {
-    const notes = localStorage.getItem(TRASH_NOTES_KEY);
-    return notes ? JSON.parse(notes) : [];
+    const { data: notes, error } = await supabase
+      .from('notes')
+      .select('*')
+      .eq('is_trashed', true)
+      .order('updated_at', { ascending: false });
+    
+    if (error) throw error;
+    
+    return notes.map(note => ({
+      id: note.id,
+      title: note.title || '',
+      content: note.content || '',
+      isPinned: note.is_pinned,
+      tags: [], // We'll fetch tags separately
+      color: note.color,
+      createdAt: new Date(note.created_at),
+      updatedAt: new Date(note.updated_at),
+    }));
   } catch (error) {
     console.error('Error fetching deleted notes:', error);
     return [];
@@ -112,219 +87,492 @@ export const getDeletedNotes = (): NoteProps[] => {
 };
 
 // Create a new note
-export const createNote = (note: Partial<NoteProps>): NoteProps => {
-  const notes = getNotes();
-  
-  const newNote: NoteProps = {
-    id: uuidv4(),
-    title: note.title || '',
-    content: note.content || '',
-    isPinned: note.isPinned || false,
-    tags: note.tags || [],
-    color: note.color,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  };
-  
-  const updatedNotes = [newNote, ...notes];
-  localStorage.setItem(NOTES_STORAGE_KEY, JSON.stringify(updatedNotes));
-  
-  return newNote;
+export const createNote = async (note: Partial<NoteProps>): Promise<NoteProps> => {
+  try {
+    const { data: userData } = await supabase.auth.getUser();
+    if (!userData.user) throw new Error('User not authenticated');
+
+    const { data, error } = await supabase
+      .from('notes')
+      .insert({
+        title: note.title || '',
+        content: note.content || '',
+        is_pinned: note.isPinned || false,
+        color: note.color || '#ffffff',
+        user_id: userData.user.id,
+      })
+      .select()
+      .single();
+    
+    if (error) throw error;
+    
+    // Insert tags if provided
+    if (note.tags && note.tags.length > 0) {
+      await addTagsToNote(data.id, note.tags);
+    }
+    
+    return {
+      id: data.id,
+      title: data.title || '',
+      content: data.content || '',
+      isPinned: data.is_pinned,
+      tags: note.tags || [],
+      color: data.color,
+      createdAt: new Date(data.created_at),
+      updatedAt: new Date(data.updated_at),
+    };
+  } catch (error) {
+    console.error('Error creating note:', error);
+    // Fallback to local creation for offline support
+    const newNote: NoteProps = {
+      id: uuidv4(),
+      title: note.title || '',
+      content: note.content || '',
+      isPinned: note.isPinned || false,
+      tags: note.tags || [],
+      color: note.color,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    return newNote;
+  }
 };
 
 // Update a note
-export const updateNote = (updatedNote: Partial<NoteProps>): NoteProps | null => {
+export const updateNote = async (updatedNote: Partial<NoteProps>): Promise<NoteProps | null> => {
   if (!updatedNote.id) return null;
   
-  const notes = getNotes();
-  const noteIndex = notes.findIndex(note => note.id === updatedNote.id);
-  
-  if (noteIndex === -1) return null;
-  
-  const note = notes[noteIndex];
-  const newNote = {
-    ...note,
-    ...updatedNote,
-    updatedAt: new Date(),
-  };
-  
-  notes[noteIndex] = newNote;
-  localStorage.setItem(NOTES_STORAGE_KEY, JSON.stringify(notes));
-  
-  return newNote;
+  try {
+    const { data, error } = await supabase
+      .from('notes')
+      .update({
+        title: updatedNote.title,
+        content: updatedNote.content,
+        is_pinned: updatedNote.isPinned,
+        color: updatedNote.color,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', updatedNote.id)
+      .select()
+      .single();
+    
+    if (error) throw error;
+    
+    // Update tags if provided
+    if (updatedNote.tags !== undefined) {
+      await updateNoteTagsRelation(updatedNote.id, updatedNote.tags);
+    }
+    
+    return {
+      id: data.id,
+      title: data.title || '',
+      content: data.content || '',
+      isPinned: data.is_pinned,
+      tags: updatedNote.tags || [],
+      color: data.color,
+      createdAt: new Date(data.created_at),
+      updatedAt: new Date(data.updated_at),
+    };
+  } catch (error) {
+    console.error('Error updating note:', error);
+    return null;
+  }
 };
 
 // Toggle pin status of a note
-export const togglePinNote = (id: string): NoteProps | null => {
-  const notes = getNotes();
-  const noteIndex = notes.findIndex(note => note.id === id);
-  
-  if (noteIndex === -1) return null;
-  
-  const note = notes[noteIndex];
-  note.isPinned = !note.isPinned;
-  note.updatedAt = new Date();
-  
-  notes[noteIndex] = note;
-  localStorage.setItem(NOTES_STORAGE_KEY, JSON.stringify(notes));
-  
-  return note;
+export const togglePinNote = async (id: string): Promise<NoteProps | null> => {
+  try {
+    // First get current note to know its pin status
+    const { data: note, error: fetchError } = await supabase
+      .from('notes')
+      .select('*')
+      .eq('id', id)
+      .single();
+    
+    if (fetchError) throw fetchError;
+    
+    const { data, error } = await supabase
+      .from('notes')
+      .update({
+        is_pinned: !note.is_pinned,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', id)
+      .select()
+      .single();
+    
+    if (error) throw error;
+    
+    // Fetch tags for this note
+    const tags = await getTagsForNote(id);
+    
+    return {
+      id: data.id,
+      title: data.title || '',
+      content: data.content || '',
+      isPinned: data.is_pinned,
+      tags: tags,
+      color: data.color,
+      createdAt: new Date(data.created_at),
+      updatedAt: new Date(data.updated_at),
+    };
+  } catch (error) {
+    console.error('Error toggling pin status:', error);
+    return null;
+  }
 };
 
 // Archive a note
-export const archiveNote = (id: string): boolean => {
-  const notes = getNotes();
-  const noteIndex = notes.findIndex(note => note.id === id);
-  
-  if (noteIndex === -1) return false;
-  
-  const note = notes[noteIndex];
-  notes.splice(noteIndex, 1);
-  
-  localStorage.setItem(NOTES_STORAGE_KEY, JSON.stringify(notes));
-  
-  const archivedNotes = getArchivedNotes();
-  archivedNotes.unshift({
-    ...note,
-    updatedAt: new Date()
-  });
-  
-  localStorage.setItem(ARCHIVED_NOTES_KEY, JSON.stringify(archivedNotes));
-  
-  return true;
+export const archiveNote = async (id: string): Promise<boolean> => {
+  try {
+    const { error } = await supabase
+      .from('notes')
+      .update({
+        is_archived: true,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', id);
+    
+    if (error) throw error;
+    
+    return true;
+  } catch (error) {
+    console.error('Error archiving note:', error);
+    return false;
+  }
 };
 
 // Unarchive a note
-export const unarchiveNote = (id: string): boolean => {
-  const archivedNotes = getArchivedNotes();
-  const noteIndex = archivedNotes.findIndex(note => note.id === id);
-  
-  if (noteIndex === -1) return false;
-  
-  const note = archivedNotes[noteIndex];
-  archivedNotes.splice(noteIndex, 1);
-  
-  localStorage.setItem(ARCHIVED_NOTES_KEY, JSON.stringify(archivedNotes));
-  
-  const notes = getNotes();
-  notes.unshift({
-    ...note,
-    updatedAt: new Date()
-  });
-  
-  localStorage.setItem(NOTES_STORAGE_KEY, JSON.stringify(notes));
-  
-  return true;
+export const unarchiveNote = async (id: string): Promise<boolean> => {
+  try {
+    const { error } = await supabase
+      .from('notes')
+      .update({
+        is_archived: false,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', id);
+    
+    if (error) throw error;
+    
+    return true;
+  } catch (error) {
+    console.error('Error unarchiving note:', error);
+    return false;
+  }
 };
 
 // Delete a note (move to trash)
-export const deleteNote = (id: string, fromArchive = false): boolean => {
-  let sourceArray;
-  let sourceKey;
-  
-  if (fromArchive) {
-    sourceArray = getArchivedNotes();
-    sourceKey = ARCHIVED_NOTES_KEY;
-  } else {
-    sourceArray = getNotes();
-    sourceKey = NOTES_STORAGE_KEY;
+export const deleteNote = async (id: string, fromArchive = false): Promise<boolean> => {
+  try {
+    const { error } = await supabase
+      .from('notes')
+      .update({
+        is_trashed: true,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', id);
+    
+    if (error) throw error;
+    
+    return true;
+  } catch (error) {
+    console.error('Error deleting note:', error);
+    return false;
   }
-  
-  const noteIndex = sourceArray.findIndex(note => note.id === id);
-  
-  if (noteIndex === -1) return false;
-  
-  const note = sourceArray[noteIndex];
-  sourceArray.splice(noteIndex, 1);
-  
-  localStorage.setItem(sourceKey, JSON.stringify(sourceArray));
-  
-  const trashNotes = getDeletedNotes();
-  trashNotes.unshift({
-    ...note,
-    updatedAt: new Date()
-  });
-  
-  localStorage.setItem(TRASH_NOTES_KEY, JSON.stringify(trashNotes));
-  
-  return true;
 };
 
 // Restore a note from trash
-export const restoreNote = (id: string): boolean => {
-  const trashNotes = getDeletedNotes();
-  const noteIndex = trashNotes.findIndex(note => note.id === id);
-  
-  if (noteIndex === -1) return false;
-  
-  const note = trashNotes[noteIndex];
-  trashNotes.splice(noteIndex, 1);
-  
-  localStorage.setItem(TRASH_NOTES_KEY, JSON.stringify(trashNotes));
-  
-  const notes = getNotes();
-  notes.unshift({
-    ...note,
-    updatedAt: new Date()
-  });
-  
-  localStorage.setItem(NOTES_STORAGE_KEY, JSON.stringify(notes));
-  
-  return true;
+export const restoreNote = async (id: string): Promise<boolean> => {
+  try {
+    const { error } = await supabase
+      .from('notes')
+      .update({
+        is_trashed: false,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', id);
+    
+    if (error) throw error;
+    
+    return true;
+  } catch (error) {
+    console.error('Error restoring note:', error);
+    return false;
+  }
 };
 
 // Permanently delete a note
-export const permanentlyDeleteNote = (id: string): boolean => {
-  const trashNotes = getDeletedNotes();
-  const noteIndex = trashNotes.findIndex(note => note.id === id);
-  
-  if (noteIndex === -1) return false;
-  
-  trashNotes.splice(noteIndex, 1);
-  localStorage.setItem(TRASH_NOTES_KEY, JSON.stringify(trashNotes));
-  
-  return true;
+export const permanentlyDeleteNote = async (id: string): Promise<boolean> => {
+  try {
+    // First delete all tag relationships
+    const { error: tagError } = await supabase
+      .from('note_tags')
+      .delete()
+      .eq('note_id', id);
+    
+    if (tagError) throw tagError;
+    
+    // Then delete the note
+    const { error } = await supabase
+      .from('notes')
+      .delete()
+      .eq('id', id);
+    
+    if (error) throw error;
+    
+    return true;
+  } catch (error) {
+    console.error('Error permanently deleting note:', error);
+    return false;
+  }
 };
 
 // Empty trash
-export const emptyTrash = (): boolean => {
-  localStorage.setItem(TRASH_NOTES_KEY, JSON.stringify([]));
-  return true;
+export const emptyTrash = async (): Promise<boolean> => {
+  try {
+    // Get all trashed note IDs
+    const { data: trashedNotes, error: fetchError } = await supabase
+      .from('notes')
+      .select('id')
+      .eq('is_trashed', true);
+    
+    if (fetchError) throw fetchError;
+    
+    // Delete tag relationships for all trashed notes
+    if (trashedNotes.length > 0) {
+      const noteIds = trashedNotes.map(note => note.id);
+      
+      const { error: tagError } = await supabase
+        .from('note_tags')
+        .delete()
+        .in('note_id', noteIds);
+      
+      if (tagError) throw tagError;
+      
+      // Then delete the notes
+      const { error } = await supabase
+        .from('notes')
+        .delete()
+        .in('id', noteIds);
+      
+      if (error) throw error;
+    }
+    
+    return true;
+  } catch (error) {
+    console.error('Error emptying trash:', error);
+    return false;
+  }
+};
+
+// Helper function to get tags for a note
+export const getTagsForNote = async (noteId: string): Promise<string[]> => {
+  try {
+    const { data, error } = await supabase
+      .from('note_tags')
+      .select('tags(name)')
+      .eq('note_id', noteId);
+    
+    if (error) throw error;
+    
+    return data.map(item => item.tags.name);
+  } catch (error) {
+    console.error('Error fetching tags for note:', error);
+    return [];
+  }
+};
+
+// Helper function to add tags to a note
+export const addTagsToNote = async (noteId: string, tagNames: string[]): Promise<boolean> => {
+  try {
+    const { data: userData } = await supabase.auth.getUser();
+    if (!userData.user) throw new Error('User not authenticated');
+    
+    // First, ensure all tags exist
+    for (const tagName of tagNames) {
+      // Check if tag exists
+      let { data: existingTag, error: fetchError } = await supabase
+        .from('tags')
+        .select('id')
+        .eq('name', tagName)
+        .eq('user_id', userData.user.id)
+        .maybeSingle();
+      
+      if (fetchError) throw fetchError;
+      
+      // Create tag if it doesn't exist
+      if (!existingTag) {
+        const { data: newTag, error: insertError } = await supabase
+          .from('tags')
+          .insert({ name: tagName, user_id: userData.user.id })
+          .select()
+          .single();
+        
+        if (insertError) throw insertError;
+        
+        existingTag = newTag;
+      }
+      
+      // Create relationship between note and tag
+      const { error: relationError } = await supabase
+        .from('note_tags')
+        .insert({ note_id: noteId, tag_id: existingTag.id });
+      
+      if (relationError) throw relationError;
+    }
+    
+    return true;
+  } catch (error) {
+    console.error('Error adding tags to note:', error);
+    return false;
+  }
+};
+
+// Helper function to update note-tag relations
+export const updateNoteTagsRelation = async (noteId: string, tagNames: string[]): Promise<boolean> => {
+  try {
+    // First, delete all existing relationships
+    const { error: deleteError } = await supabase
+      .from('note_tags')
+      .delete()
+      .eq('note_id', noteId);
+    
+    if (deleteError) throw deleteError;
+    
+    // Then add the new relationships
+    if (tagNames.length > 0) {
+      await addTagsToNote(noteId, tagNames);
+    }
+    
+    return true;
+  } catch (error) {
+    console.error('Error updating note-tag relations:', error);
+    return false;
+  }
 };
 
 // Get all unique tags from notes
-export const getAllTags = (): string[] => {
-  const notes = getNotes();
-  const archivedNotes = getArchivedNotes();
-  const allNotes = [...notes, ...archivedNotes];
-  
-  const tagSet = new Set<string>();
-  
-  allNotes.forEach(note => {
-    if (note.tags) {
-      note.tags.forEach(tag => tagSet.add(tag));
-    }
-  });
-  
-  return Array.from(tagSet);
+export const getAllTags = async (): Promise<string[]> => {
+  try {
+    const { data: userData } = await supabase.auth.getUser();
+    if (!userData.user) throw new Error('User not authenticated');
+
+    const { data, error } = await supabase
+      .from('tags')
+      .select('name')
+      .eq('user_id', userData.user.id)
+      .order('name');
+    
+    if (error) throw error;
+    
+    return data.map(tag => tag.name);
+  } catch (error) {
+    console.error('Error fetching all tags:', error);
+    return [];
+  }
 };
 
 // Get notes by tag
-export const getNotesByTag = (tag: string): NoteProps[] => {
-  const notes = getNotes();
-  return notes.filter(note => note.tags && note.tags.includes(tag));
+export const getNotesByTag = async (tag: string): Promise<NoteProps[]> => {
+  try {
+    const { data: userData } = await supabase.auth.getUser();
+    if (!userData.user) throw new Error('User not authenticated');
+
+    // Get tag ID
+    const { data: tagData, error: tagError } = await supabase
+      .from('tags')
+      .select('id')
+      .eq('name', tag)
+      .eq('user_id', userData.user.id)
+      .single();
+    
+    if (tagError) throw tagError;
+    
+    // Get note IDs with this tag
+    const { data: noteTagData, error: noteTagError } = await supabase
+      .from('note_tags')
+      .select('note_id')
+      .eq('tag_id', tagData.id);
+    
+    if (noteTagError) throw noteTagError;
+    
+    if (noteTagData.length === 0) return [];
+    
+    const noteIds = noteTagData.map(item => item.note_id);
+    
+    // Get notes with these IDs
+    const { data: notesData, error: notesError } = await supabase
+      .from('notes')
+      .select('*')
+      .in('id', noteIds)
+      .eq('is_archived', false)
+      .eq('is_trashed', false)
+      .order('updated_at', { ascending: false });
+    
+    if (notesError) throw notesError;
+    
+    // Transform data to match NoteProps
+    const notes: NoteProps[] = [];
+    
+    for (const note of notesData) {
+      const tags = await getTagsForNote(note.id);
+      
+      notes.push({
+        id: note.id,
+        title: note.title || '',
+        content: note.content || '',
+        isPinned: note.is_pinned,
+        tags: tags,
+        color: note.color,
+        createdAt: new Date(note.created_at),
+        updatedAt: new Date(note.updated_at),
+      });
+    }
+    
+    return notes;
+  } catch (error) {
+    console.error('Error fetching notes by tag:', error);
+    return [];
+  }
 };
 
 // Search notes
-export const searchNotes = (query: string): NoteProps[] => {
+export const searchNotes = async (query: string): Promise<NoteProps[]> => {
   if (!query.trim()) return [];
   
-  const notes = getNotes();
-  const lowerQuery = query.toLowerCase();
-  
-  return notes.filter(note => 
-    note.title.toLowerCase().includes(lowerQuery) || 
-    note.content.toLowerCase().includes(lowerQuery) ||
-    (note.tags && note.tags.some(tag => tag.toLowerCase().includes(lowerQuery)))
-  );
+  try {
+    const { data, error } = await supabase
+      .from('notes')
+      .select('*')
+      .or(`title.ilike.%${query}%,content.ilike.%${query}%`)
+      .eq('is_archived', false)
+      .eq('is_trashed', false)
+      .order('updated_at', { ascending: false });
+    
+    if (error) throw error;
+    
+    // Transform data to match NoteProps
+    const notes: NoteProps[] = [];
+    
+    for (const note of data) {
+      const tags = await getTagsForNote(note.id);
+      
+      notes.push({
+        id: note.id,
+        title: note.title || '',
+        content: note.content || '',
+        isPinned: note.is_pinned,
+        tags: tags,
+        color: note.color,
+        createdAt: new Date(note.created_at),
+        updatedAt: new Date(note.updated_at),
+      });
+    }
+    
+    return notes;
+  } catch (error) {
+    console.error('Error searching notes:', error);
+    return [];
+  }
 };

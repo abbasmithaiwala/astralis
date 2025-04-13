@@ -1,9 +1,21 @@
 
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { StickyNote, Pin, Archive, Trash2, Tag, Menu, X } from 'lucide-react';
+import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { StickyNote, Pin, Archive, Trash2, Tag, Menu, X, LogOut, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { 
+  Dialog, 
+  DialogContent, 
+  DialogDescription, 
+  DialogHeader, 
+  DialogTitle,
+  DialogFooter
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { useAuth } from '@/contexts/AuthContext';
+import { toast } from 'sonner';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -13,6 +25,10 @@ interface SidebarProps {
 
 const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, signOut } = useAuth();
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -40,6 +56,17 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
       icon: <Trash2 size={20} />,
     },
   ];
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      toast.success('Logged out successfully');
+      navigate('/login');
+    } catch (error) {
+      console.error('Error signing out:', error);
+      toast.error('Failed to log out');
+    }
+  };
 
   return (
     <>
@@ -133,21 +160,121 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
           </nav>
           
           <div className="p-4 border-t border-gray-200">
-            <Link
-              to="/settings"
-              className="flex items-center px-4 py-2 rounded-md text-gray-700 hover:bg-pastel-pink hover:bg-opacity-20 transition-colors duration-200"
+            <Button
+              variant="ghost"
+              className="flex items-center w-full px-4 py-2 rounded-md text-gray-700 hover:bg-pastel-pink hover:bg-opacity-20 transition-colors duration-200"
+              onClick={() => setIsSettingsOpen(true)}
             >
-              <span className="mr-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
-                  <circle cx="12" cy="12" r="3"></circle>
-                </svg>
-              </span>
+              <Settings size={16} className="mr-3" />
               <span>Settings</span>
-            </Link>
+            </Button>
+            
+            <Button
+              variant="ghost"
+              className="flex items-center w-full px-4 py-2 rounded-md text-gray-700 hover:bg-pastel-pink hover:bg-opacity-20 transition-colors duration-200"
+              onClick={handleLogout}
+            >
+              <LogOut size={16} className="mr-3" />
+              <span>Logout</span>
+            </Button>
           </div>
         </div>
       </aside>
+
+      {/* Settings Dialog */}
+      <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Settings</DialogTitle>
+            <DialogDescription>
+              Configure your PastelNotes experience
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Button 
+                className="w-full" 
+                variant="outline"
+                onClick={() => {
+                  setIsSettingsOpen(false);
+                  setIsProfileOpen(true);
+                }}
+              >
+                Edit Profile
+              </Button>
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="theme">Theme</Label>
+              <select 
+                id="theme" 
+                className="w-full p-2 border rounded-md"
+              >
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+                <option value="system">System Default</option>
+              </select>
+            </div>
+          </div>
+          
+          <DialogFooter>
+            <Button onClick={() => setIsSettingsOpen(false)}>Close</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Profile Dialog */}
+      <Dialog open={isProfileOpen} onOpenChange={setIsProfileOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Edit Profile</DialogTitle>
+            <DialogDescription>
+              Update your personal information
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Name</Label>
+              <Input id="name" defaultValue={user?.user_metadata?.name || ''} />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" type="email" defaultValue={user?.email || ''} disabled />
+              <p className="text-xs text-gray-500">Email cannot be changed</p>
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="dob">Date of Birth</Label>
+              <Input id="dob" type="date" defaultValue={user?.user_metadata?.dob || ''} />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="gender">Gender</Label>
+              <select 
+                id="gender" 
+                className="w-full p-2 border rounded-md"
+                defaultValue={user?.user_metadata?.gender || 'prefer not to say'}
+              >
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+                <option value="prefer not to say">Prefer not to say</option>
+              </select>
+            </div>
+          </div>
+          
+          <DialogFooter>
+            <Button onClick={() => setIsProfileOpen(false)} variant="outline">Cancel</Button>
+            <Button onClick={() => {
+              toast.success('Profile updated successfully');
+              setIsProfileOpen(false);
+            }}>Save Changes</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };

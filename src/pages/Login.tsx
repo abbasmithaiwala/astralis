@@ -5,6 +5,7 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -17,19 +18,20 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      // Here we would normally connect to Supabase auth
-      // const { user, error } = await supabase.auth.signIn({ email, password });
-      
-      // For now, we'll just simulate a successful login
-      setTimeout(() => {
-        // If credentials are valid
-        toast.success('Login successful!');
-        navigate('/notes');
-        
-        // If credentials are invalid
-        // toast.error('Invalid email or password');
-      }, 1500);
+      const { data, error } = await supabase.auth.signInWithPassword({ 
+        email, 
+        password 
+      });
+
+      if (error) {
+        toast.error(error.message);
+        return;
+      }
+
+      toast.success('Login successful!');
+      navigate('/notes');
     } catch (error) {
+      console.error('Login error:', error);
       toast.error('An error occurred during login');
     } finally {
       setIsLoading(false);
