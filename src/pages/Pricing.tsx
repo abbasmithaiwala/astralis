@@ -163,7 +163,7 @@ const PricingPage = () => {
             
             <div className="space-y-6">
               <div className="bg-white p-6 rounded-xl shadow-sm">
-                <h3 className="text-xl font-semibold text-[#054A40] mb-3">Can I try PastelNotes before I buy?</h3>
+                <h3 className="text-xl font-semibold text-[#054A40] mb-3">Can I try MoodChat.io before I buy?</h3>
                 <p className="text-[#54595F]">Yes! You can start with our free plan, which includes core features. We also offer a 14-day free trial of Premium with no credit card required.</p>
               </div>
               
@@ -202,7 +202,7 @@ const PricingPage = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-[#FEFBF6] p-6 rounded-xl shadow-sm border border-[#E5DCC3]/30">
-              <p className="text-[#54595F] mb-6 italic">"PastelNotes has completely changed how I organize my thoughts. The emotional tagging feature is a game-changer for my journaling practice."</p>
+              <p className="text-[#54595F] mb-6 italic">"MoodChat.io has completely changed how I organize my thoughts. The emotional tagging feature is a game-changer for my journaling practice."</p>
               <div className="flex items-center">
                 <div className="w-10 h-10 rounded-full bg-[#F0E6FF] flex items-center justify-center mr-3">
                   <span className="font-semibold text-[#8440FF]">SR</span>
@@ -215,7 +215,7 @@ const PricingPage = () => {
             </div>
             
             <div className="bg-[#FEFBF6] p-6 rounded-xl shadow-sm border border-[#E5DCC3]/30">
-              <p className="text-[#54595F] mb-6 italic">"The Premium plan is well worth the investment. I use PastelNotes for both personal journaling and work projects, and the unlimited tags help me keep everything organized."</p>
+              <p className="text-[#54595F] mb-6 italic">"The Premium plan is well worth the investment. I use MoodChat.io for both personal journaling and work projects, and the unlimited tags help me keep everything organized."</p>
               <div className="flex items-center">
                 <div className="w-10 h-10 rounded-full bg-[#E6F7FF] flex items-center justify-center mr-3">
                   <span className="font-semibold text-[#5EAFFF]">MT</span>
@@ -228,7 +228,7 @@ const PricingPage = () => {
             </div>
             
             <div className="bg-[#FEFBF6] p-6 rounded-xl shadow-sm border border-[#E5DCC3]/30">
-              <p className="text-[#54595F] mb-6 italic">"Our team switched to PastelNotes Business last year, and it's been a productivity boost for everyone. The collaborative features and admin controls are exactly what we needed."</p>
+              <p className="text-[#54595F] mb-6 italic">"Our team switched to MoodChat.io Business last year, and it's been a productivity boost for everyone. The collaborative features and admin controls are exactly what we needed."</p>
               <div className="flex items-center">
                 <div className="w-10 h-10 rounded-full bg-[#FFF4DE] flex items-center justify-center mr-3">
                   <span className="font-semibold text-[#F7B731]">JL</span>
@@ -251,7 +251,7 @@ const PricingPage = () => {
             Ready to <span className="heading-serif">Get Started</span>?
           </h2>
           <p className="text-lg max-w-2xl mx-auto mb-10 text-[#54595F]">
-            Join thousands of users who've transformed how they take notes. Try PastelNotes today—it's free to get started.
+            Join thousands of users who've transformed how they take notes. Try MoodChat.io today—it's free to get started.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="rounded-full bg-[#054A40] hover:bg-[#054A40]/90 text-white shadow-md hover:shadow-lg transition-all px-8">

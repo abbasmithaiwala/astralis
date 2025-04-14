@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Heart, Lightbulb, Users, Palette, Coffee, ArrowRight, Star } from 'lucide-react';
+import { Heart, Lightbulb, Users, ArrowRight } from 'lucide-react';
 
 const AboutPage = () => {
   return (
@@ -16,10 +16,10 @@ const AboutPage = () => {
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
-              Our <span className="heading-serif">Story</span>
+              Beyond <span className="heading-serif">Notes</span>
             </h1>
             <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8 text-[#54595F]">
-              We're on a mission to help people capture thoughts, ideas, and memories in a way that reflects their unique emotional states.
+              MoodChat.io is more than just a notes app - it's your emotional companion. Every color you choose and emotion you express helps create a personalized AI support system that understands and connects with you on a human level.
             </p>
           </div>
         </div>
@@ -40,13 +40,13 @@ const AboutPage = () => {
               <div className="w-full md:w-1/2">
                 <h2 className="text-3xl font-bold mb-4 text-[#054A40]">How It All Began</h2>
                 <p className="text-[#54595F] mb-4">
-                  PastelNotes began in 2020 when our founder, a lifelong journaler, noticed that traditional note-taking apps didn't reflect the emotional contexts in which notes are created.
+                  MoodChat.io began in 2020 when our founder, a psychology researcher, noticed that traditional note-taking apps didn't address the emotional needs of users. They saw an opportunity to create something that could not only capture thoughts but also provide emotional support.
                 </p>
                 <p className="text-[#54595F] mb-4">
-                  After months of research and development, our small team launched a beta version with a simple goal: create a note-taking app that acknowledges the human emotions behind each entry.
+                  After years of research in emotional intelligence and AI, our team developed a unique system where the colors and emotions you express in your notes help create a personalized AI companion that understands your state of mind.
                 </p>
                 <p className="text-[#54595F]">
-                  Today, PastelNotes helps thousands of people around the world organize their thoughts with emotional context, making journaling, planning, and note-taking a more meaningful experience.
+                  Today, MoodChat.io helps thousands of people around the world not just organize their thoughts, but also receive personalized emotional support through AI that feels like talking to a caring friend.
                 </p>
               </div>
             </div>
@@ -71,9 +71,9 @@ const AboutPage = () => {
               <div className="w-12 h-12 bg-[#FFE2E2] rounded-full flex items-center justify-center mb-4">
                 <Heart className="h-6 w-6 text-[#FF6B6B]" />
               </div>
-              <h3 className="text-xl font-semibold text-[#054A40] mb-3">Emotionally Intelligent</h3>
+              <h3 className="text-xl font-semibold text-[#054A40] mb-3">Emotional Intelligence</h3>
               <p className="text-[#54595F]">
-                We believe note-taking should honor the emotional context in which ideas and thoughts emerge.
+                We believe in using AI to provide genuine emotional support. Your color choices and emotional expressions help create a personalized support system that feels human.
               </p>
             </div>
             
@@ -81,9 +81,9 @@ const AboutPage = () => {
               <div className="w-12 h-12 bg-[#E3F8FF] rounded-full flex items-center justify-center mb-4">
                 <Lightbulb className="h-6 w-6 text-[#5EAFFF]" />
               </div>
-              <h3 className="text-xl font-semibold text-[#054A40] mb-3">Thoughtfully Designed</h3>
+              <h3 className="text-xl font-semibold text-[#054A40] mb-3">AI-Powered Support</h3>
               <p className="text-[#54595F]">
-                Every feature and visual element is crafted to create a calm, inspiring environment for your ideas.
+                Our AI learns from your emotional patterns to provide support that feels natural and understanding, helping you work through your feelings.
               </p>
             </div>
             
@@ -91,78 +91,10 @@ const AboutPage = () => {
               <div className="w-12 h-12 bg-[#FFF4DE] rounded-full flex items-center justify-center mb-4">
                 <Users className="h-6 w-6 text-[#F7B731]" />
               </div>
-              <h3 className="text-xl font-semibold text-[#054A40] mb-3">Community Focused</h3>
+              <h3 className="text-xl font-semibold text-[#054A40] mb-3">Personal Growth</h3>
               <p className="text-[#54595F]">
-                We listen closely to our users and evolve our product based on their needs and feedback.
+                We're committed to helping you grow emotionally. Our AI companion provides insights and support to help you understand and manage your feelings.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* Team Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-[#054A40]">
-              Meet Our <span className="heading-serif">Team</span>
-            </h2>
-            <p className="text-lg text-[#54595F]">
-              A passionate group of individuals working together to make note-taking more personal and meaningful.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
-            <div className="text-center">
-              <div className="mb-4 relative">
-                <img 
-                  src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80" 
-                  alt="Emma Chen" 
-                  className="rounded-xl w-full aspect-square object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-semibold text-[#054A40]">Emma Chen</h3>
-              <p className="text-[#54595F] mb-2">Founder & CEO</p>
-              <p className="text-sm text-[#54595F]">Former UX designer with a passion for journaling and psychology.</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="mb-4">
-                <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80" 
-                  alt="David Kim" 
-                  className="rounded-xl w-full aspect-square object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-semibold text-[#054A40]">David Kim</h3>
-              <p className="text-[#54595F] mb-2">CTO</p>
-              <p className="text-sm text-[#54595F]">Full-stack developer with 10+ years of experience building thoughtful interfaces.</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="mb-4">
-                <img 
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80" 
-                  alt="Sarah Johnson" 
-                  className="rounded-xl w-full aspect-square object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-semibold text-[#054A40]">Sarah Johnson</h3>
-              <p className="text-[#54595F] mb-2">Head of Design</p>
-              <p className="text-sm text-[#54595F]">Award-winning designer focused on creating emotional experiences through color.</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="mb-4">
-                <img 
-                  src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80" 
-                  alt="Marcus Taylor" 
-                  className="rounded-xl w-full aspect-square object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-semibold text-[#054A40]">Marcus Taylor</h3>
-              <p className="text-[#54595F] mb-2">Customer Success</p>
-              <p className="text-sm text-[#54595F]">Psychology background with expertise in helping users get the most from PastelNotes.</p>
             </div>
           </div>
         </div>
@@ -176,7 +108,7 @@ const AboutPage = () => {
               Our <span className="heading-serif">Journey</span>
             </h2>
             <p className="text-lg text-[#54595F]">
-              From idea to reality, the story of PastelNotes continues to evolve.
+              From idea to reality, the story of MoodChat.io continues to evolve.
             </p>
           </div>
           
@@ -192,7 +124,7 @@ const AboutPage = () => {
                   <div className="text-sm font-semibold text-[#FF6B6B] mb-2">2020</div>
                   <h3 className="text-xl font-semibold text-[#054A40] mb-3">The Beginning</h3>
                   <p className="text-[#54595F]">
-                    Emma Chen started PastelNotes after noticing a gap in emotionally-intelligent note-taking tools. First prototype developed.
+                    Emma Chen started MoodChat.io after noticing a gap in emotionally-intelligent note-taking tools. First prototype developed.
                   </p>
                 </div>
               </div>
@@ -220,7 +152,7 @@ const AboutPage = () => {
                   <div className="text-sm font-semibold text-[#F7B731] mb-2">2022</div>
                   <h3 className="text-xl font-semibold text-[#054A40] mb-3">Public Launch</h3>
                   <p className="text-[#54595F]">
-                    Official release of PastelNotes 1.0. Featured in several tech publications for our innovative approach to emotional organization.
+                    Official release of MoodChat.io 1.0. Featured in several tech publications for our innovative approach to emotional organization.
                   </p>
                 </div>
               </div>

@@ -11,7 +11,7 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="flex items-center">
           <span className="text-2xl font-bold heading-serif">
-            PastelNotes
+            MoodChat.io
           </span>
         </Link>
 

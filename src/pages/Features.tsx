@@ -16,10 +16,10 @@ const Features = () => {
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
-              Powerful <span className="heading-serif">Features</span>
+              Beyond <span className="heading-serif">Notes</span>
             </h1>
             <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8 text-[#54595F]">
-              Discover all the ways PastelNotes helps you capture, organize, and access your thoughts with ease.
+              MoodChat.io is more than just a notes app - it's your emotional companion. Every color you choose and emotion you express helps create a personalized AI support system that understands and connects with you on a human level.
             </p>
           </div>
         </div>
@@ -97,10 +97,10 @@ const Features = () => {
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-[#054A40]">
-              Organize by <span className="heading-serif">Emotion</span>
+              Emotional <span className="heading-serif">Connection</span>
             </h2>
             <p className="text-lg text-[#54595F]">
-              Express yourself with our emotion-based organization system. Categorize your notes based on your feelings and moods.
+              Your notes become a gateway to emotional support. The colors and emotions you express help our AI understand your state of mind, creating a personalized support system that feels like talking to a caring friend.
             </p>
           </div>
           
@@ -110,8 +110,8 @@ const Features = () => {
                 <div className="bg-[#FFF4DE] p-3 rounded-full inline-flex mb-4 shadow-sm">
                   <LightbulbIcon className="h-6 w-6 text-[#F7B731]" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-[#054A40]">Happy Thoughts</h3>
-                <p className="text-[#54595F] mb-3">Record moments of joy, achievements, and positive experiences.</p>
+                <h3 className="text-xl font-semibold mb-2 text-[#054A40]">Mood Tracking</h3>
+                <p className="text-[#54595F] mb-3">Express your emotions through colors and get AI support that understands your current state.</p>
               </div>
             </div>
             
@@ -120,8 +120,8 @@ const Features = () => {
                 <div className="bg-[#E6F7FF] p-3 rounded-full inline-flex mb-4 shadow-sm">
                   <BookOpen className="h-6 w-6 text-[#5EAFFF]" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-[#054A40]">Peaceful Reflections</h3>
-                <p className="text-[#54595F] mb-3">Journal your calm moments and mindful reflections.</p>
+                <h3 className="text-xl font-semibold mb-2 text-[#054A40]">AI Companion</h3>
+                <p className="text-[#54595F] mb-3">Get personalized support that adapts to your emotional needs and provides human-like conversation.</p>
               </div>
             </div>
             
@@ -130,8 +130,8 @@ const Features = () => {
                 <div className="bg-[#F0E6FF] p-3 rounded-full inline-flex mb-4 shadow-sm">
                   <Zap className="h-6 w-6 text-[#8440FF]" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-[#054A40]">Inspiring Ideas</h3>
-                <p className="text-[#54595F] mb-3">Capture those eureka moments and creative inspirations.</p>
+                <h3 className="text-xl font-semibold mb-2 text-[#054A40]">Emotional Insights</h3>
+                <p className="text-[#54595F] mb-3">Track your emotional patterns and receive insights to help you understand and manage your feelings.</p>
               </div>
             </div>
             
@@ -140,8 +140,8 @@ const Features = () => {
                 <div className="bg-[#FFE6ED] p-3 rounded-full inline-flex mb-4 shadow-sm">
                   <Share2 className="h-6 w-6 text-[#FC5C8D]" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-[#054A40]">Connection Notes</h3>
-                <p className="text-[#54595F] mb-3">Keep track of meaningful relationships and shared moments.</p>
+                <h3 className="text-xl font-semibold mb-2 text-[#054A40]">Personal Growth</h3>
+                <p className="text-[#54595F] mb-3">Use your emotional notes as a tool for self-reflection and personal development with AI guidance.</p>
               </div>
             </div>
           </div>
@@ -157,7 +157,7 @@ const Features = () => {
                 Boost Your <span className="heading-serif">Productivity</span>
               </h2>
               <p className="text-lg text-[#54595F] mb-8">
-                PastelNotes is designed to help you work smarter, not harder. Our tools streamline your workflow and help you stay focused.
+                MoodChat.io is designed to help you work smarter, not harder. Our tools streamline your workflow and help you stay focused.
               </p>
               
               <ul className="space-y-6">
@@ -213,7 +213,7 @@ const Features = () => {
                 Available <span className="heading-serif">Everywhere</span>
               </h2>
               <p className="text-lg text-[#54595F] mb-8">
-                PastelNotes works on all your devices, so you can access your notes anywhere, anytime.
+                MoodChat.io works on all your devices, so you can access your notes anywhere, anytime.
               </p>
               <ul className="space-y-6">
                 <li className="flex items-start">
@@ -264,10 +264,10 @@ const Features = () => {
         <div className="absolute inset-0 bg-[url('/img/dots-pattern.svg')] opacity-10"></div>
         <div className="container mx-auto px-6 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
-            Ready to <span className="heading-serif">Experience</span> PastelNotes?
+            Ready to <span className="heading-serif">Experience</span> MoodChat.io?
           </h2>
           <p className="text-lg max-w-2xl mx-auto mb-10 text-[#54595F]">
-            Join thousands of users who've transformed how they take notes. Try PastelNotes today—it's free to get started.
+            Join thousands of users who've transformed how they take notes. Try MoodChat.io today—it's free to get started.
           </p>
           <Button asChild size="lg" className="rounded-full bg-[#054A40] hover:bg-[#054A40]/90 text-white shadow-md hover:shadow-lg transition-all px-8">
             <Link to="/signup">Start Free Trial</Link>
