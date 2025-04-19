@@ -48,7 +48,6 @@ export type Database = {
           is_archived: boolean | null
           is_pinned: boolean | null
           is_trashed: boolean | null
-          position: Json | null
           title: string | null
           updated_at: string | null
           user_id: string
@@ -61,7 +60,6 @@ export type Database = {
           is_archived?: boolean | null
           is_pinned?: boolean | null
           is_trashed?: boolean | null
-          position?: Json | null
           title?: string | null
           updated_at?: string | null
           user_id: string
@@ -74,7 +72,6 @@ export type Database = {
           is_archived?: boolean | null
           is_pinned?: boolean | null
           is_trashed?: boolean | null
-          position?: Json | null
           title?: string | null
           updated_at?: string | null
           user_id?: string
@@ -90,6 +87,7 @@ export type Database = {
           name: string | null
           phone_number: string | null
           updated_at: string | null
+          chat: boolean
         }
         Insert: {
           created_at?: string | null
@@ -99,6 +97,7 @@ export type Database = {
           name?: string | null
           phone_number?: string | null
           updated_at?: string | null
+          chat?: boolean
         }
         Update: {
           created_at?: string | null
@@ -108,12 +107,12 @@ export type Database = {
           name?: string | null
           phone_number?: string | null
           updated_at?: string | null
+          chat?: boolean
         }
         Relationships: []
       }
       tags: {
         Row: {
-          color: string | null
           created_at: string | null
           id: string
           name: string
@@ -121,7 +120,6 @@ export type Database = {
           user_id: string
         }
         Insert: {
-          color?: string | null
           created_at?: string | null
           id?: string
           name: string
@@ -129,7 +127,6 @@ export type Database = {
           user_id: string
         }
         Update: {
-          color?: string | null
           created_at?: string | null
           id?: string
           name?: string
