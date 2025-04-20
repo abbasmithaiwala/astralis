@@ -9,6 +9,36 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      chat_messages: {
+        Row: {
+          created_at: string
+          id: string
+          is_processed: boolean | null
+          message: string
+          response: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_processed?: boolean | null
+          message: string
+          response?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_processed?: boolean | null
+          message?: string
+          response?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       note_tags: {
         Row: {
           note_id: string
@@ -80,6 +110,7 @@ export type Database = {
       }
       profiles: {
         Row: {
+          chat: boolean | null
           created_at: string | null
           dob: string | null
           gender: string | null
@@ -87,9 +118,9 @@ export type Database = {
           name: string | null
           phone_number: string | null
           updated_at: string | null
-          chat: boolean
         }
         Insert: {
+          chat?: boolean | null
           created_at?: string | null
           dob?: string | null
           gender?: string | null
@@ -97,9 +128,9 @@ export type Database = {
           name?: string | null
           phone_number?: string | null
           updated_at?: string | null
-          chat?: boolean
         }
         Update: {
+          chat?: boolean | null
           created_at?: string | null
           dob?: string | null
           gender?: string | null
@@ -107,7 +138,6 @@ export type Database = {
           name?: string | null
           phone_number?: string | null
           updated_at?: string | null
-          chat?: boolean
         }
         Relationships: []
       }
