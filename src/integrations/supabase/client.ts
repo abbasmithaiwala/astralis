@@ -3,15 +3,16 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || '';
-const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || '';
+// If the environment variables are empty strings, use dummy values for development
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://tzyllpxvzbcspnjeoftu.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR6eWxscHh2emJjc3BuamVvZnR1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI3NDAzMjEsImV4cCI6MjA1ODMxNjMyMX0.UG-bvMPNMs4FMNi5vUInTP3OTCmgr-bEGhE_Ona0x2U';
 
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";
 
-// Check if environment variables are set
-if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
-  console.error('Supabase environment variables are missing. Make sure to set VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY in your .env file.');
+// Log a warning if environment variables are missing
+if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY) {
+  console.warn('Supabase environment variables are missing. Using fallback values for development. Make sure to set VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY in your .env file for production.');
 }
 
 export const supabase = createClient<Database>(
