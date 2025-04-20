@@ -5,7 +5,7 @@ import NoteCard, { NoteProps } from '@/components/notes/NoteCard';
 import CreateNoteButton from '@/components/notes/CreateNoteButton';
 import NoteSidebar from '@/components/notes/NoteSidebar';
 import NoteEditor from '@/components/notes/NoteEditor';
-import { Search, Grid3X3, List } from 'lucide-react';
+import { Search, Grid3X3, List, MessageSquare } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
@@ -360,9 +360,18 @@ const NotesPage: React.FC = () => {
                   size="icon"
                   onClick={() => setIsGridView(!isGridView)}
                   aria-label={isGridView ? "Switch to list view" : "Switch to grid view"}
-                  className="ml-2"
                 >
                   {isGridView ? <List size={18} /> : <Grid3X3 size={18} />}
+                </Button>
+                
+                <Button
+                  variant="default"
+                  onClick={() => navigate('/chat')}
+                  aria-label="Chat with AI"
+                  className="bg-[#054A40] hover:bg-[#054A40]/90 text-white flex gap-2"
+                >
+                  <MessageSquare size={18} />
+                  <span className="hidden sm:inline">Chat</span>
                 </Button>
               </div>
             </div>
