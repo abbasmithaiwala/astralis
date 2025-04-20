@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
@@ -81,15 +82,15 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 gradient-bg">
-      <Link to="/" className="mb-8 text-3xl font-bold text-white">
-        PastelNotes
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-[#FEFBF6]">
+      <Link to="/" className="mb-8 text-3xl font-serif font-bold text-[#054A40]">
+        Astralis
       </Link>
       
-      <Card className="w-full max-w-md bg-white/90 backdrop-blur">
+      <Card className="w-full max-w-md bg-white/90 backdrop-blur border-[#054A40]/10">
         <CardHeader className="text-center">
-          <h1 className="text-2xl font-semibold">Create an account</h1>
-          <p className="text-sm text-gray-500">Sign up to get started with PastelNotes</p>
+          <h1 className="text-2xl font-serif font-semibold text-[#054A40]">Create an account</h1>
+          <p className="text-sm text-[#054A40]/70">Sign up to get started with Astralis</p>
         </CardHeader>
         
         <CardContent>
@@ -244,7 +245,7 @@ const Signup = () => {
               
               <Button 
                 type="submit" 
-                className="w-full bg-pastel-pink-dark hover:bg-opacity-90"
+                className="w-full bg-[#054A40] hover:bg-[#054A40]/90 text-white"
                 disabled={isLoading}
               >
                 {isLoading ? 'Creating account...' : 'Create account'}
@@ -253,10 +254,10 @@ const Signup = () => {
           </Form>
         </CardContent>
         
-        <CardFooter className="flex flex-col space-y-4 border-t p-6">
-          <div className="text-sm text-gray-500 text-center">
+        <CardFooter className="flex flex-col space-y-4 border-t border-[#054A40]/10 p-6">
+          <div className="text-sm text-[#054A40]/70 text-center">
             Already have an account?{' '}
-            <Link to="/login" className="text-pastel-pink-dark hover:underline">
+            <Link to="/login" className="text-[#054A40] hover:underline">
               Sign in
             </Link>
           </div>

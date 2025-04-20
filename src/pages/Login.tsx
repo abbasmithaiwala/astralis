@@ -39,15 +39,15 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 gradient-bg">
-      <Link to="/" className="mb-8 text-3xl font-bold text-white">
-        PastelNotes
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-[#FEFBF6]">
+      <Link to="/" className="mb-8 text-3xl font-serif font-bold text-[#054A40]">
+        Astralis
       </Link>
       
-      <Card className="w-full max-w-md bg-white/90 backdrop-blur">
+      <Card className="w-full max-w-md bg-white/90 backdrop-blur border-[#054A40]/10">
         <CardHeader className="text-center">
-          <h1 className="text-2xl font-semibold">Welcome back</h1>
-          <p className="text-sm text-gray-500">Sign in to your account to continue</p>
+          <h1 className="text-2xl font-serif font-semibold text-[#054A40]">Welcome back</h1>
+          <p className="text-sm text-[#054A40]/70">Sign in to your account to continue</p>
         </CardHeader>
         
         <CardContent>
@@ -87,7 +87,7 @@ const Login = () => {
             
             <Button 
               type="submit" 
-              className="w-full bg-pastel-pink-dark hover:bg-opacity-90"
+              className="w-full bg-[#054A40] hover:bg-[#054A40]/90 text-white"
               disabled={isLoading}
             >
               {isLoading ? 'Signing in...' : 'Sign in'}
@@ -95,10 +95,10 @@ const Login = () => {
           </form>
         </CardContent>
         
-        <CardFooter className="flex flex-col space-y-4 border-t p-6">
-          <div className="text-sm text-gray-500 text-center">
+        <CardFooter className="flex flex-col space-y-4 border-t border-[#054A40]/10 p-6">
+          <div className="text-sm text-[#054A40]/70 text-center">
             Don't have an account?{' '}
-            <Link to="/signup" className="text-pastel-pink-dark hover:underline">
+            <Link to="/signup" className="text-[#054A40] hover:underline">
               Sign up
             </Link>
           </div>

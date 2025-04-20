@@ -121,7 +121,7 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
       <Button
         variant="ghost"
         size="icon"
-        className="fixed top-4 left-4 z-50 md:hidden"
+        className="fixed top-4 left-4 z-50 md:hidden text-[#054A40]"
         onClick={onToggle}
         aria-label={isOpen ? "Close sidebar" : "Open sidebar"}
       >
@@ -130,15 +130,15 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
       
       <aside 
         className={cn(
-          "fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-gray-200 transition-transform duration-300 ease-in-out transform",
+          "fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-[#054A40]/10 transition-transform duration-300 ease-in-out transform",
           isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
         )}
       >
         <div className="flex flex-col h-full overflow-y-auto">
           <div className="p-4 flex items-center justify-between">
             <Link to="/" className="flex items-center">
-              <span className="text-xl font-semibold bg-gradient-to-r from-pastel-pink-dark to-pastel-purple-dark bg-clip-text text-transparent">
-                PastelNotes
+              <span className="text-xl font-serif font-semibold text-[#054A40]">
+                Astralis
               </span>
             </Link>
             
@@ -160,8 +160,8 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
                   <Link
                     to={link.path}
                     className={cn(
-                      "flex items-center px-4 py-2 rounded-md text-gray-700 hover:bg-pastel-pink hover:bg-opacity-20 transition-colors duration-200",
-                      isActive(link.path) && "bg-pastel-pink bg-opacity-30 text-pastel-pink-dark font-medium"
+                      "flex items-center px-4 py-2 rounded-md text-[#054A40]/70 hover:bg-[#054A40]/5 transition-colors duration-200",
+                      isActive(link.path) && "bg-[#054A40]/10 text-[#054A40] font-medium"
                     )}
                   >
                     <span className="mr-3">{link.icon}</span>
