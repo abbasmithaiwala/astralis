@@ -19,7 +19,7 @@ const Features = () => {
               Beyond <span className="heading-serif">Notes</span>
             </h1>
             <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8 text-[#54595F]">
-              MoodChat.io is more than just a notes app - it's your emotional companion. Every color you choose and emotion you express helps create a personalized AI support system that understands and connects with you on a human level.
+              Astralis is more than just a notes app - it's your emotional companion. Every color you choose and emotion you express helps create a personalized AI support system that understands and connects with you on a human level.
             </p>
           </div>
         </div>
@@ -31,7 +31,7 @@ const Features = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="feature-card bg-pastel-pink-light">
               <div className="bg-white rounded-full p-4 inline-flex mb-6 shadow-sm">
-                <Tag className="h-6 w-6 text-pastel-pink-dark" />
+                <Tag className="h-6 w-6 text-[#054A40]" />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-[#054A40]">Smart Organization</h3>
               <p className="text-[#54595F]">
@@ -157,13 +157,13 @@ const Features = () => {
                 Boost Your <span className="heading-serif">Productivity</span>
               </h2>
               <p className="text-lg text-[#54595F] mb-8">
-                MoodChat.io is designed to help you work smarter, not harder. Our tools streamline your workflow and help you stay focused.
+                Astralis is designed to help you work smarter, not harder. Our tools streamline your workflow and help you stay focused.
               </p>
               
               <ul className="space-y-6">
                 <li className="flex items-start">
                   <div className="bg-pastel-pink-light p-2 rounded-lg mr-4 mt-1">
-                    <Clock className="h-5 w-5 text-pastel-pink-dark" />
+                    <Clock className="h-5 w-5 text-[#054A40]" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-[#054A40]">Time-Saving Templates</h3>
@@ -213,12 +213,12 @@ const Features = () => {
                 Available <span className="heading-serif">Everywhere</span>
               </h2>
               <p className="text-lg text-[#54595F] mb-8">
-                MoodChat.io works on all your devices, so you can access your notes anywhere, anytime.
+                Astralis works on all your devices, so you can access your notes anywhere, anytime.
               </p>
               <ul className="space-y-6">
                 <li className="flex items-start">
                   <div className="bg-pastel-pink-light p-2 rounded-lg mr-4 mt-1">
-                    <Smartphone className="h-5 w-5 text-pastel-pink-dark" />
+                    <Smartphone className="h-5 w-5 text-[#054A40]" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-[#054A40]">Mobile Apps</h3>
@@ -264,10 +264,10 @@ const Features = () => {
         <div className="absolute inset-0 bg-[url('/img/dots-pattern.svg')] opacity-10"></div>
         <div className="container mx-auto px-6 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
-            Ready to <span className="heading-serif">Experience</span> MoodChat.io?
+            Ready to <span className="heading-serif">Experience</span> Astralis?
           </h2>
           <p className="text-lg max-w-2xl mx-auto mb-10 text-[#54595F]">
-            Join thousands of users who've transformed how they take notes. Try MoodChat.io today—it's free to get started.
+            Join thousands of users who've transformed how they take notes. Try Astralis today—it's free to get started.
           </p>
           <Button asChild size="lg" className="rounded-full bg-[#054A40] hover:bg-[#054A40]/90 text-white shadow-md hover:shadow-lg transition-all px-8">
             <Link to="/signup">Start Free Trial</Link>

@@ -41,7 +41,7 @@ const TermsPage = () => {
                   <h2 className="text-2xl font-bold text-[#054A40] m-0">Introduction</h2>
                 </div>
                 <p className="text-[#54595F]">
-                  Welcome to PastelNotes. These Terms of Service ("Terms") govern your access to and use of our website, mobile applications, and services (collectively, the "Services"), so please read them carefully.
+                  Welcome to Astralis. These Terms of Service ("Terms") govern your access to and use of our website, mobile applications, and services (collectively, the "Services"), so please read them carefully.
                 </p>
                 <p className="text-[#54595F]">
                   By accessing or using our Services, you agree to be bound by these Terms. If you do not agree to these Terms, you may not access or use the Services.
@@ -157,7 +157,7 @@ const TermsPage = () => {
                   If you have any questions or concerns about these Terms or our Services, please contact us at:
                 </p>
                 <p className="text-[#54595F]">
-                  <a href="mailto:legal@pastelnotes.com" className="text-[#054A40] hover:underline">legal@pastelnotes.com</a>
+                  <a href="mailto:legal@Astralis.com" className="text-[#054A40] hover:underline">legal@Astralis.com</a>
                 </p>
               </div>
             </div>

@@ -56,7 +56,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, onPin, onArchive, onDelete, o
       <div className="relative">
         {note.isPinned && (
           <div className="absolute top-0 right-0 p-2">
-            <Pin size={16} className="text-pastel-pink-dark" fill="currentColor" />
+            <Pin size={16} className="text-[#054A40]" fill="currentColor" />
           </div>
         )}
         
@@ -76,7 +76,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, onPin, onArchive, onDelete, o
                 key={tag}
                 className="inline-flex items-center text-xs bg-white bg-opacity-60 rounded-full px-2 py-1"
               >
-                <Tag size={12} className="mr-1 text-pastel-pink-dark" />
+                <Tag size={12} className="mr-1 text-[#054A40]" />
                 {tag}
               </div>
             ))}
@@ -95,7 +95,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, onPin, onArchive, onDelete, o
               onClick={(e) => handleAction(e, () => onPin(note.id))}
               aria-label={note.isPinned ? "Unpin note" : "Pin note"}
             >
-              <Pin size={16} className={note.isPinned ? "text-pastel-pink-dark" : "text-gray-500"} />
+              <Pin size={16} className={note.isPinned ? "text-[#054A40]" : "text-gray-500"} />
             </Button>
             <Button
               variant="ghost"

@@ -142,7 +142,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="feature-card bg-pastel-pink-light">
               <div className="bg-white rounded-full p-4 inline-flex mb-6 shadow-sm">
-                <Tag className="h-6 w-6 text-pastel-pink-dark" />
+                <Tag className="h-6 w-6 text-[#054A40]" />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-pastel-neutral-800">Smart Organization</h3>
               <p className="text-pastel-neutral-600">
@@ -248,12 +248,12 @@ const Index = () => {
                 Works Offline & Feels Native
               </h2>
               <p className="text-lg text-pastel-neutral-600 mb-8">
-                PastelNotes works seamlessly offline, so you can access and edit your notes anywhere, anytime—even without an internet connection.
+                Astralis works seamlessly offline, so you can access and edit your notes anywhere, anytime—even without an internet connection.
               </p>
               <ul className="space-y-6">
                 <li className="flex items-start">
                   <div className="bg-pastel-pink-light p-2 rounded-lg mr-4 mt-1">
-                    <Smartphone className="h-5 w-5 text-pastel-pink-dark" />
+                    <Smartphone className="h-5 w-5 text-[#054A40]" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-pastel-neutral-800">Install on Any Device</h3>
@@ -330,7 +330,7 @@ const Index = () => {
             Ready to Get <span className="heading-serif">Organized</span>?
           </h2>
           <p className="text-lg max-w-2xl mx-auto mb-10 text-pastel-neutral-600">
-            Join thousands of users who've transformed how they take notes. Try PastelNotes today—it's free to get started.
+            Join thousands of users who've transformed how they take notes. Try Astralis today—it's free to get started.
           </p>
           <Button asChild size="lg" className="rounded-full bg-[#054A40] hover:bg-[#054A40]/90 text-white shadow-md hover:shadow-lg transition-all px-8">
             <Link to="/signup">Create Your Free Account</Link>

@@ -20,7 +20,7 @@ const CreateNoteButton: React.FC<CreateNoteButtonProps> = ({ onCreateNote }) => 
     <>
       <Button 
         onClick={() => setIsEditorOpen(true)} 
-        className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg bg-pastel-pink-dark text-white hover:bg-opacity-90 z-10"
+        className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg bg-[#054A40] text-white  hover:bg-[#054A40]/90 z-10"
         aria-label="Create new note"
       >
         <Plus size={24} />

@@ -41,7 +41,7 @@ const PrivacyPage = () => {
                   <h2 className="text-2xl font-bold text-[#054A40] m-0">Overview</h2>
                 </div>
                 <p className="text-[#54595F]">
-                  This Privacy Policy describes how PastelNotes ("we", "our", or "us") collects, uses, and shares your information when you use our website, mobile applications, and services (collectively, the "Services").
+                  This Privacy Policy describes how Astralis ("we", "our", or "us") collects, uses, and shares your information when you use our website, mobile applications, and services (collectively, the "Services").
                 </p>
                 <p className="text-[#54595F]">
                   We take your privacy seriously and are committed to protecting and respecting your personal data. Please read this policy carefully to understand our practices regarding your personal information.
@@ -154,7 +154,7 @@ const PrivacyPage = () => {
                   If you have any questions or concerns about our Privacy Policy or our practices with regard to your personal information, please contact us at:
                 </p>
                 <p className="text-[#54595F]">
-                  <a href="mailto:privacy@pastelnotes.com" className="text-[#054A40] hover:underline">privacy@pastelnotes.com</a>
+                  <a href="mailto:privacy@Astralis.com" className="text-[#054A40] hover:underline">privacy@Astralis.com</a>
                 </p>
               </div>
             </div>

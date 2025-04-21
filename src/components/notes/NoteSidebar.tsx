@@ -183,7 +183,7 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
                         to={`/notes/tags/${tag}`}
                         className={cn(
                           "flex items-center px-4 py-2 rounded-md text-gray-700 hover:bg-pastel-pink hover:bg-opacity-20 transition-colors duration-200",
-                          isActive(`/notes/tags/${tag}`) && "bg-pastel-pink bg-opacity-30 text-pastel-pink-dark font-medium"
+                          isActive(`/notes/tags/${tag}`) && "bg-pastel-pink bg-opacity-30 text-[#054A40] font-medium"
                         )}
                       >
                         <Tag size={16} className="mr-3" />
@@ -223,7 +223,7 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
           <DialogHeader>
             <DialogTitle>Settings</DialogTitle>
             <DialogDescription>
-              Configure your PastelNotes experience
+              Configure your astralis experience
             </DialogDescription>
           </DialogHeader>
           

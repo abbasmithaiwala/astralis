@@ -121,11 +121,11 @@
   }
   
   .btn-pastel-primary {
-    @apply btn-pastel bg-pastel-pink-dark text-white hover:bg-opacity-90 shadow-sm hover:shadow-md;
+    @apply btn-pastel bg-[#054A40] text-white hover:bg-opacity-90 shadow-sm hover:shadow-md;
   }
   
   .btn-pastel-secondary {
-    @apply btn-pastel bg-white text-pastel-pink-dark border border-pastel-pink-dark/20 hover:bg-pastel-pink-light hover:bg-opacity-20;
+    @apply btn-pastel bg-white text-[#054A40] border border-[#054A40]/20 hover:bg-pastel-pink-light hover:bg-opacity-20;
   }
 
   .glass-card {

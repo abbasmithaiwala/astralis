@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="flex items-center">
               <span className="text-2xl font-bold heading-serif">
-                PastelNotes
+                Astralis
               </span>
             </Link>
             <p className="mt-5 text-[#54595F] max-w-md">
@@ -63,7 +63,7 @@ const Footer = () => {
 
         <div className="mt-16 pt-8 border-t border-[#E5DCC3]/30 flex flex-col md:flex-row justify-between items-center">
           <p className="text-[#6B7280] text-sm">
-            © {new Date().getFullYear()} PastelNotes. All rights reserved.
+            © {new Date().getFullYear()} Astralis. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-6 md:mt-0">
             <a href="#" className="text-[#6B7280] hover:text-[#054A40] transition-colors">

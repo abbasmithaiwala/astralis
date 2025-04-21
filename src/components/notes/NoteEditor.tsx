@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { X, PaletteIcon, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -24,6 +23,7 @@ const NoteEditor: React.FC<NoteEditorProps> = ({
   const [isPinned, setIsPinned] = useState(false);
   const [tagInput, setTagInput] = useState('');
   const [tags, setTags] = useState<string[]>([]);
+  const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
 
   useEffect(() => {
     if (initialNote) {
@@ -170,21 +170,26 @@ const NoteEditor: React.FC<NoteEditorProps> = ({
           <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-200">
             <div className="flex items-center gap-2">
               <div className="relative">
-                <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
+                <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => setIsColorPickerOpen(!isColorPickerOpen)}>
                   <PaletteIcon size={18} />
                 </Button>
-                <div className="absolute left-0 top-full mt-2 bg-white shadow-lg rounded-md p-2 z-10 flex gap-2 flex-wrap w-[180px]">
-                  {colorOptions.map((option) => (
-                    <button
-                      key={option.name}
-                      className={`w-6 h-6 rounded-full ${option.class} border border-gray-200 flex items-center justify-center`}
-                      onClick={() => setColor(option.value)}
-                      aria-label={`Set note color to ${option.name}`}
-                    >
-                      {color === option.value && <Check size={14} />}
-                    </button>
-                  ))}
-                </div>
+                {isColorPickerOpen && (
+                  <div className="absolute left-0 top-0 -translate-y-1/2 bg-white shadow-lg rounded-md p-2 z-10 flex items-center gap-2 w-auto ml-8">
+                    {colorOptions.map((option) => (
+                      <button
+                        key={option.name}
+                        className={`w-6 h-6 rounded-full ${option.class} border border-gray-200 flex items-center justify-center`}
+                        onClick={() => {
+                          setColor(option.value);
+                          setIsColorPickerOpen(false);
+                        }}
+                        aria-label={`Set note color to ${option.name}`}
+                      >
+                        {color === option.value && <Check size={14} />}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 
@@ -198,7 +203,7 @@ const NoteEditor: React.FC<NoteEditorProps> = ({
                   onClose();
                 }}
                 disabled={!content.trim() && !title.trim()}
-                className="bg-pastel-pink-dark hover:bg-opacity-90 text-white"
+                className="bg-[#054A40] hover:bg-opacity-90 text-white"
               >
                 Save
               </Button>

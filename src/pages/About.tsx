@@ -19,7 +19,7 @@ const AboutPage = () => {
               Beyond <span className="heading-serif">Notes</span>
             </h1>
             <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8 text-[#54595F]">
-              MoodChat.io is more than just a notes app - it's your emotional companion. Every color you choose and emotion you express helps create a personalized AI support system that understands and connects with you on a human level.
+              Astralis is more than just a notes app - it's your emotional companion. Every color you choose and emotion you express helps create a personalized AI support system that understands and connects with you on a human level.
             </p>
           </div>
         </div>
@@ -40,13 +40,13 @@ const AboutPage = () => {
               <div className="w-full md:w-1/2">
                 <h2 className="text-3xl font-bold mb-4 text-[#054A40]">How It All Began</h2>
                 <p className="text-[#54595F] mb-4">
-                  MoodChat.io began in 2020 when our founder, a psychology researcher, noticed that traditional note-taking apps didn't address the emotional needs of users. They saw an opportunity to create something that could not only capture thoughts but also provide emotional support.
+                  Astralis began in 2020 when our founder, a psychology researcher, noticed that traditional note-taking apps didn't address the emotional needs of users. They saw an opportunity to create something that could not only capture thoughts but also provide emotional support.
                 </p>
                 <p className="text-[#54595F] mb-4">
                   After years of research in emotional intelligence and AI, our team developed a unique system where the colors and emotions you express in your notes help create a personalized AI companion that understands your state of mind.
                 </p>
                 <p className="text-[#54595F]">
-                  Today, MoodChat.io helps thousands of people around the world not just organize their thoughts, but also receive personalized emotional support through AI that feels like talking to a caring friend.
+                  Today, Astralis helps thousands of people around the world not just organize their thoughts, but also receive personalized emotional support through AI that feels like talking to a caring friend.
                 </p>
               </div>
             </div>
@@ -108,7 +108,7 @@ const AboutPage = () => {
               Our <span className="heading-serif">Journey</span>
             </h2>
             <p className="text-lg text-[#54595F]">
-              From idea to reality, the story of MoodChat.io continues to evolve.
+              From idea to reality, the story of Astralis continues to evolve.
             </p>
           </div>
           
@@ -124,7 +124,7 @@ const AboutPage = () => {
                   <div className="text-sm font-semibold text-[#FF6B6B] mb-2">2020</div>
                   <h3 className="text-xl font-semibold text-[#054A40] mb-3">The Beginning</h3>
                   <p className="text-[#54595F]">
-                    Emma Chen started MoodChat.io after noticing a gap in emotionally-intelligent note-taking tools. First prototype developed.
+                    Emma Chen started Astralis after noticing a gap in emotionally-intelligent note-taking tools. First prototype developed.
                   </p>
                 </div>
               </div>
@@ -152,7 +152,7 @@ const AboutPage = () => {
                   <div className="text-sm font-semibold text-[#F7B731] mb-2">2022</div>
                   <h3 className="text-xl font-semibold text-[#054A40] mb-3">Public Launch</h3>
                   <p className="text-[#54595F]">
-                    Official release of MoodChat.io 1.0. Featured in several tech publications for our innovative approach to emotional organization.
+                    Official release of Astralis 1.0. Featured in several tech publications for our innovative approach to emotional organization.
                   </p>
                 </div>
               </div>
