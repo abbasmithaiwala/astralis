@@ -1,10 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      navigate('/login');
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
 
   return (
     <nav className="bg-[#FEFBF6] py-4 px-6 sticky top-0 z-50 border-b border-[#E5DCC3]/30">
@@ -29,14 +41,34 @@ const Navbar = () => {
           <Link to="/about" className="text-[#054A40] hover:text-[#054A40]/70 transition-colors font-medium">
             About
           </Link>
-          <div className="space-x-3">
-            <Button asChild variant="ghost" className="text-[#054A40] hover:text-[#054A40]/70 hover:bg-[#FFF8E9]">
-              <Link to="/login">Log In</Link>
-            </Button>
-            <Button asChild className="bg-[#054A40] text-white hover:bg-[#054A40]/90 rounded-full px-6">
-              <Link to="/signup">Sign Up</Link>
-            </Button>
-          </div>
+          
+          {user ? (
+            <>
+              {/* <Button 
+                onClick={handleLogout}
+                variant="ghost" 
+                className="text-[#054A40] hover:text-[#054A40]/70 hover:bg-[#FFF8E9]"
+              >
+                Log Out
+              </Button> */}
+              <Button 
+                onClick={() => navigate('/notes')}
+                variant="ghost" 
+                className="bg-[#054A40] rounded-full text-white hover:text-white  hover:bg-[#054A40]/90"
+              >
+                Go to Notes
+              </Button>
+            </>
+          ) : (
+            <div className="space-x-3">
+              <Button asChild variant="ghost" className="text-[#054A40] hover:text-[#054A40]/70 hover:bg-[#FFF8E9]">
+                <Link to="/login">Log In</Link>
+              </Button>
+              <Button asChild className="bg-[#054A40] text-white hover:bg-[#054A40]/90 rounded-full px-6">
+                <Link to="/signup">Sign Up</Link>
+              </Button>
+            </div>
+          )}
         </div>
 
         {/* Mobile Navigation Toggle */}
@@ -68,14 +100,33 @@ const Navbar = () => {
           <Link to="/about" className="text-[#054A40] hover:text-[#054A40]/70 font-medium transition-colors" onClick={() => setIsOpen(false)}>
             About
           </Link>
-          <div className="flex flex-col space-y-3 pt-2">
-            <Button asChild variant="ghost" className="text-[#054A40] hover:text-[#054A40]/70 hover:bg-[#FFF8E9] w-full justify-start">
-              <Link to="/login" onClick={() => setIsOpen(false)}>Log In</Link>
-            </Button>
-            <Button asChild className="bg-[#054A40] text-white hover:bg-[#054A40]/90 rounded-full w-full">
-              <Link to="/signup" onClick={() => setIsOpen(false)}>Sign Up</Link>
-            </Button>
-          </div>
+          
+          {user ? (
+            <>
+              <Link to="/notes" className="text-[#054A40] hover:text-[#054A40]/70 font-medium transition-colors" onClick={() => setIsOpen(false)}>
+                Notes
+              </Link>
+              <Button 
+                onClick={() => {
+                  handleLogout();
+                  setIsOpen(false);
+                }}
+                variant="ghost" 
+                className="text-[#054A40] hover:text-[#054A40]/70 hover:bg-[#FFF8E9] w-full justify-start"
+              >
+                Log Out
+              </Button>
+            </>
+          ) : (
+            <div className="flex flex-col space-y-3 pt-2">
+              <Button asChild variant="ghost" className="text-[#054A40] hover:text-[#054A40]/70 hover:bg-[#FFF8E9] w-full justify-start">
+                <Link to="/login" onClick={() => setIsOpen(false)}>Log In</Link>
+              </Button>
+              <Button asChild className="bg-[#054A40] text-white hover:bg-[#054A40]/90 rounded-full w-full">
+                <Link to="/signup" onClick={() => setIsOpen(false)}>Sign Up</Link>
+              </Button>
+            </div>
+          )}
         </div>
       )}
     </nav>
