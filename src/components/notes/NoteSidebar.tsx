@@ -219,19 +219,18 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
       </aside>
 
       <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
-        <DialogContent>
+        <DialogContent className="bg-[#FEFBF6] border-[#E5DCC3]/30">
           <DialogHeader>
-            <DialogTitle>Settings</DialogTitle>
-            <DialogDescription>
-              Configure your astralis experience
+            <DialogTitle className="text-[#054A40] heading-serif text-xl">Settings</DialogTitle>
+            <DialogDescription className="text-[#054A40]/70">
+              Configure your Astralis experience
             </DialogDescription>
           </DialogHeader>
           
           <div className="space-y-4 py-4">
             <div className="space-y-2">
               <Button 
-                className="w-full" 
-                variant="outline"
+                className="w-full bg-[#054A40] text-white hover:bg-[#054A40]/90 rounded-full" 
                 onClick={() => {
                   setIsSettingsOpen(false);
                   setIsProfileOpen(true);
@@ -242,10 +241,10 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="theme">Theme</Label>
+              <Label htmlFor="theme" className="text-[#054A40]">Theme</Label>
               <select 
                 id="theme" 
-                className="w-full p-2 border rounded-md"
+                className="w-full p-2 border border-[#E5DCC3]/30 rounded-full bg-white text-[#054A40] focus:outline-none focus:ring-2 focus:ring-[#054A40]/20"
               >
                 <option value="light">Light</option>
                 <option value="dark">Dark</option>
@@ -255,69 +254,49 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
           </div>
           
           <DialogFooter>
-            <Button onClick={() => setIsSettingsOpen(false)}>Close</Button>
+            <Button className="bg-[#054A40] text-white hover:bg-[#054A40]/90 rounded-full" onClick={() => setIsSettingsOpen(false)}>Close</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
       <Dialog open={isProfileOpen} onOpenChange={setIsProfileOpen}>
-        <DialogContent>
+        <DialogContent className="bg-[#FEFBF6] border-[#E5DCC3]/30">
           <DialogHeader>
-            <DialogTitle>Edit Profile</DialogTitle>
-            <DialogDescription>
+            <DialogTitle className="text-[#054A40] heading-serif text-xl">Edit Profile</DialogTitle>
+            <DialogDescription className="text-[#054A40]/70">
               Update your personal information
             </DialogDescription>
           </DialogHeader>
           
           <div className="space-y-4 py-4">
             <div className="space-y-2">
-              <Label htmlFor="name">Name</Label>
-              <Input 
-                id="name" 
+              <Label htmlFor="name" className="text-[#054A40]">Name</Label>
+              <Input
+                id="name"
                 value={profileData.name}
-                onChange={(e) => setProfileData({...profileData, name: e.target.value})}
+                onChange={(e) => setProfileData({ ...profileData, name: e.target.value })}
+                className="border-[#E5DCC3]/30 focus-visible:ring-1 focus-visible:ring-[#054A40] focus-visible:ring-offset-0 focus-visible:border-[#054A40] rounded-full"
               />
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input 
-                id="email" 
-                type="email" 
-                value={user?.email || ''} 
-                disabled 
-              />
-              <p className="text-xs text-gray-500">Email cannot be changed</p>
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="dob">Date of Birth</Label>
-              <Input 
-                id="dob" 
-                type="date" 
+              <Label htmlFor="dob" className="text-[#054A40]">Date of Birth</Label>
+              <Input
+                id="dob"
+                type="date"
                 value={profileData.dob}
-                onChange={(e) => setProfileData({...profileData, dob: e.target.value})}
+                onChange={(e) => setProfileData({ ...profileData, dob: e.target.value })}
+                className="border-[#E5DCC3]/30 focus-visible:ring-1 focus-visible:ring-[#054A40] focus-visible:ring-offset-0 focus-visible:border-[#054A40] rounded-full"
               />
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="phone">Phone Number</Label>
-              <Input 
-                id="phone" 
-                type="tel" 
-                placeholder="+1234567890"
-                value={profileData.phoneNumber}
-                onChange={(e) => setProfileData({...profileData, phoneNumber: e.target.value})}
-              />
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="gender">Gender</Label>
-              <select 
-                id="gender" 
-                className="w-full p-2 border rounded-md"
+              <Label htmlFor="gender" className="text-[#054A40]">Gender</Label>
+              <select
+                id="gender"
                 value={profileData.gender}
-                onChange={(e) => setProfileData({...profileData, gender: e.target.value})}
+                onChange={(e) => setProfileData({ ...profileData, gender: e.target.value })}
+                className="w-full p-2 border border-[#E5DCC3]/30 rounded-full bg-white text-[#054A40] focus-visible:ring-1 focus-visible:ring-[#054A40] focus-visible:ring-offset-0 focus-visible:border-[#054A40] focus:outline-none"
               >
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -325,11 +304,33 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
                 <option value="prefer not to say">Prefer not to say</option>
               </select>
             </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="phone" className="text-[#054A40]">Phone Number</Label>
+              <Input
+                id="phone"
+                type="tel"
+                value={profileData.phoneNumber}
+                onChange={(e) => setProfileData({ ...profileData, phoneNumber: e.target.value })}
+                className="border-[#E5DCC3]/30 focus-visible:ring-1 focus-visible:ring-[#054A40] focus-visible:ring-offset-0 focus-visible:border-[#054A40] rounded-full"
+              />
+            </div>
           </div>
           
           <DialogFooter>
-            <Button onClick={() => setIsProfileOpen(false)} variant="outline">Cancel</Button>
-            <Button onClick={handleProfileUpdate}>Save Changes</Button>
+            <Button
+              variant="outline"
+              onClick={() => setIsProfileOpen(false)}
+              className="rounded-full border-[#054A40] text-[#054A40] hover:bg-[#054A40]/5"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleProfileUpdate}
+              className="bg-[#054A40] text-white hover:bg-[#054A40]/90 rounded-full"
+            >
+              Save Changes
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
