@@ -203,7 +203,7 @@ const NoteEditor: React.FC<NoteEditorProps> = ({
                   onClose();
                 }}
                 disabled={!content.trim() && !title.trim()}
-                className="bg-[#054A40] hover:bg-opacity-90 text-white"
+                className="bg-[#054A40]  hover:bg-[#054A40]/90 text-white"
               >
                 Save
               </Button>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Pin, Archive, Trash2, Tag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -55,7 +54,11 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, onPin, onArchive, onDelete, o
     >
       <div className="relative">
         {note.isPinned && (
-          <div className="absolute top-0 right-0 p-2">
+          <div 
+            className="absolute top-0 right-0 p-2 cursor-pointer hover:bg-black hover:bg-opacity-5 rounded-full"
+            onClick={(e) => handleAction(e, () => onPin(note.id))}
+            aria-label="Unpin note"
+          >
             <Pin size={16} className="text-[#054A40]" fill="currentColor" />
           </div>
         )}
