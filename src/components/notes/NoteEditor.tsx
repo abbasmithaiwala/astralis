@@ -111,11 +111,11 @@ const NoteEditor: React.FC<NoteEditorProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className={`${getBackgroundColor()} p-0 max-w-lg overflow-hidden`}>
-        <div className="p-4">
+      <DialogContent className={`${getBackgroundColor()} p-0 sm:max-w-lg w-[calc(100%-32px)] mx-auto overflow-hidden border rounded-md border-gray-200`}>
+        <div className="p-4 sm:p-6">
           <input
             type="text"
-            className="w-full text-lg font-medium mb-2 bg-transparent border-0 focus:outline-none placeholder-gray-500"
+            className="w-full text-lg font-medium mb-3 bg-transparent border-0 focus:outline-none placeholder-gray-500"
             placeholder="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -150,7 +150,7 @@ const NoteEditor: React.FC<NoteEditorProps> = ({
           <div className="flex items-center gap-2 mt-4">
             <input
               type="text"
-              className="flex-grow bg-white bg-opacity-60 rounded px-2 py-1 text-sm focus:outline-none"
+              className="flex-grow bg-white bg-opacity-60 rounded px-2 py-2 text-sm focus:outline-none"
               placeholder="Add tag"
               value={tagInput}
               onChange={(e) => setTagInput(e.target.value)}
@@ -161,24 +161,24 @@ const NoteEditor: React.FC<NoteEditorProps> = ({
               variant="outline" 
               onClick={handleAddTag}
               disabled={!tagInput.trim()}
-              className="bg-white bg-opacity-60"
+              className="bg-white bg-opacity-60 h-9"
             >
               Add
             </Button>
           </div>
 
-          <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-200">
+          <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-200 flex-wrap gap-y-3">
             <div className="flex items-center gap-2">
               <div className="relative">
-                <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => setIsColorPickerOpen(!isColorPickerOpen)}>
+                <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full" onClick={() => setIsColorPickerOpen(!isColorPickerOpen)}>
                   <PaletteIcon size={18} />
                 </Button>
                 {isColorPickerOpen && (
-                  <div className="absolute left-0 top-0 -translate-y-1/2 bg-white shadow-lg rounded-md p-2 z-10 flex items-center gap-2 w-auto ml-8">
+                  <div className="absolute left-0 sm:top-full sm:mt-1 top-auto bottom-full mb-1 bg-white shadow-lg rounded-md p-2 z-10 flex flex-wrap items-center gap-2 min-w-[180px]">
                     {colorOptions.map((option) => (
                       <button
                         key={option.name}
-                        className={`w-6 h-6 rounded-full ${option.class} border border-gray-200 flex items-center justify-center`}
+                        className={`w-7 h-7 rounded-full ${option.class} border border-gray-200 flex items-center justify-center`}
                         onClick={() => {
                           setColor(option.value);
                           setIsColorPickerOpen(false);
@@ -193,8 +193,8 @@ const NoteEditor: React.FC<NoteEditorProps> = ({
               </div>
             </div>
 
-            <div className="flex gap-2">
-              <Button variant="ghost" onClick={onClose}>
+            <div className="flex gap-2 ml-auto">
+              <Button variant="ghost" className="h-9" onClick={onClose}>
                 Cancel
               </Button>
               <Button 
@@ -203,7 +203,7 @@ const NoteEditor: React.FC<NoteEditorProps> = ({
                   onClose();
                 }}
                 disabled={!content.trim() && !title.trim()}
-                className="bg-[#054A40]  hover:bg-[#054A40]/90 text-white"
+                className="bg-[#054A40] hover:bg-[#054A40]/90 text-white h-9"
               >
                 Save
               </Button>
