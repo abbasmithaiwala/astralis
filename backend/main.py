@@ -66,6 +66,11 @@ class ChatRequest(BaseModel):
     message_id: str
     conversation_history: List[Message] = []
 
+class ChatMessageRequest(BaseModel):
+    message: str
+    msg_type: Literal["user_msg", "ai_response", "user_note"]
+    user_id: uuid.UUID
+
 @app.post("/notes/", status_code=201)
 async def create_note(note: NoteCreate, supabase: Client = Depends(get_supabase)):
     """
@@ -192,11 +197,11 @@ async def mark_message_processed(
 @app.post("/chat/{user_id}")
 async def send_chat_message(
     user_id: str,
-    message: str = None,
+    chat_request: ChatMessageRequest,
     supabase: Client = Depends(get_supabase)
 ):
     """Send a chat message to the AI and store both the message and response."""
-    if not message:
+    if not chat_request.message:
         raise HTTPException(status_code=400, detail="Message content is required")
     
     try:
@@ -206,8 +211,8 @@ async def send_chat_message(
         # 2. Store the user's message in chat_messages
         user_message_data = {
             "user_id": user_id,
-            "message": message,
-            "msg_type": "user_message",
+            "message": chat_request.message,
+            "msg_type": chat_request.msg_type,
             "is_processed": False,
             "created_at": datetime.now().isoformat(),
             "request_id": message_id
@@ -233,8 +238,8 @@ async def send_chat_message(
             conversation_history.append({"role": role, "content": msg["message"]})
         
         # 4. Call AI API
-        chat_request = {
-            "message": message,
+        chat_request_data = {
+            "message": chat_request.message,
             "message_id": message_id,
             "conversation_history": conversation_history
         }
@@ -242,7 +247,7 @@ async def send_chat_message(
         async with httpx.AsyncClient(timeout=30.0) as client:
             ai_response = await client.post(
                 AI_API_URL,
-                json=chat_request,
+                json=chat_request_data,
                 headers={"Content-Type": "application/json"}
             )
             ai_response.raise_for_status()
