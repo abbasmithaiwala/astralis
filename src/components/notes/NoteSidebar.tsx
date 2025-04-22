@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { StickyNote, Pin, Archive, Trash2, Tag, Menu, X, LogOut, Settings, User, Edit } from 'lucide-react';
+import { StickyNote, Pin, Archive, Trash2, Tag, Menu, X, LogOut, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { 
@@ -27,7 +27,6 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, signOut } = useAuth();
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [profileData, setProfileData] = useState({
     name: user?.user_metadata?.name || '',
@@ -199,65 +198,24 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
           <div className="p-4 border-t border-gray-200">
             <Button
               variant="ghost"
-              className="flex items-center w-full px-4 py-2 rounded-md text-gray-700 hover:bg-pastel-pink hover:bg-opacity-20 transition-colors duration-200"
-              onClick={() => setIsSettingsOpen(true)}
+              className="flex w-full justify-start py-2 rounded-md text-gray-700 hover:bg-[#054A40]/5 transition-colors duration-200 relative"
+              onClick={() => setIsProfileOpen(true)}
             >
-              <Settings size={16} className="mr-3" />
-              <span>Settings</span>
+              <User size={16}/>
+              <span>Edit Profile</span>
             </Button>
             
             <Button
               variant="ghost"
-              className="flex items-center w-full px-4 py-2 rounded-md text-gray-700 hover:bg-pastel-pink hover:bg-opacity-20 transition-colors duration-200"
+              className="flex justify-start w-full px-4 py-2 rounded-md text-gray-700 hover:bg-[#054A40]/5 transition-colors duration-200"
               onClick={handleLogout}
             >
-              <LogOut size={16} className="mr-3" />
+              <LogOut size={16} />
               <span>Logout</span>
             </Button>
           </div>
         </div>
       </aside>
-
-      <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
-        <DialogContent className="bg-[#FEFBF6] border-[#E5DCC3]/30">
-          <DialogHeader>
-            <DialogTitle className="text-[#054A40] heading-serif text-xl">Settings</DialogTitle>
-            <DialogDescription className="text-[#054A40]/70">
-              Configure your Astralis experience
-            </DialogDescription>
-          </DialogHeader>
-          
-          <div className="space-y-4 py-4">
-            <div className="space-y-2">
-              <Button 
-                className="w-full bg-[#054A40] text-white hover:bg-[#054A40]/90 rounded-full" 
-                onClick={() => {
-                  setIsSettingsOpen(false);
-                  setIsProfileOpen(true);
-                }}
-              >
-                Edit Profile
-              </Button>
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="theme" className="text-[#054A40]">Theme</Label>
-              <select 
-                id="theme" 
-                className="w-full p-2 border border-[#E5DCC3]/30 rounded-full bg-white text-[#054A40] focus:outline-none focus:ring-2 focus:ring-[#054A40]/20"
-              >
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-                <option value="system">System Default</option>
-              </select>
-            </div>
-          </div>
-          
-          <DialogFooter>
-            <Button className="bg-[#054A40] text-white hover:bg-[#054A40]/90 rounded-full" onClick={() => setIsSettingsOpen(false)}>Close</Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
 
       <Dialog open={isProfileOpen} onOpenChange={setIsProfileOpen}>
         <DialogContent className="bg-[#FEFBF6] border-[#E5DCC3]/30">
