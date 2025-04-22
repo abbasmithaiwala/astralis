@@ -123,17 +123,17 @@ const TermsPage = () => {
               <div className="mb-12">
                 <h2 className="text-2xl font-bold mb-4 text-[#054A40]">Disclaimer of Warranties</h2>
                 <p className="text-[#54595F]">
-                  THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+                  The services are provided "as is" and "as available" without warranties of any kind, either express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
                 </p>
                 <p className="text-[#54595F]">
-                  WE DO NOT WARRANT THAT THE SERVICES WILL BE UNINTERRUPTED OR ERROR-FREE, THAT DEFECTS WILL BE CORRECTED, OR THAT THE SERVICES OR THE SERVERS THAT MAKE THEM AVAILABLE ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS.
+                  We do not warrant that the services will be uninterrupted or error-free, that defects will be corrected, or that the services or the servers that make them available are free of viruses or other harmful components.
                 </p>
               </div>
 
               <div className="mb-12">
                 <h2 className="text-2xl font-bold mb-4 text-[#054A40]">Limitation of Liability</h2>
                 <p className="text-[#54595F]">
-                  IN NO EVENT WILL WE, OUR AFFILIATES, OR THEIR LICENSORS, SERVICE PROVIDERS, EMPLOYEES, AGENTS, OFFICERS, OR DIRECTORS BE LIABLE FOR DAMAGES OF ANY KIND, UNDER ANY LEGAL THEORY, ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF THE SERVICES, INCLUDING ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES.
+                In no event will we, our affiliates, or their licensors, service providers, employees, agents, officers, or directors be liable for damages of any kind, under any legal theory, arising out of or in connection with your use of the services, including any direct, indirect, special, incidental, consequential, or punitive damages.
                 </p>
               </div>
 
