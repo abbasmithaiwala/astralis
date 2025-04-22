@@ -34,7 +34,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, onPin, onArchive, onDelete, o
     }
   };
 
-  const truncateContent = (content: string, maxLength: number = 150) => {
+  const truncateContent = (content: string, maxLength: number = 180) => {
     return content.length > maxLength ? `${content.substring(0, maxLength)}...` : content;
   };
 
@@ -49,13 +49,13 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, onPin, onArchive, onDelete, o
 
   return (
     <Card 
-      className={`note-card animate-fade-in ${getCardBgColor()} hover:shadow-lg transition-all duration-300 cursor-pointer`} 
+      className={`note-card animate-fade-in ${getCardBgColor()} hover:shadow-lg transition-all duration-300 cursor-pointer w-full max-w-[320px] min-h-[200px] flex flex-col`} 
       onClick={handleCardClick}
     >
-      <div className="relative">
+      <div className="relative flex flex-col flex-1 p-4">
         {note.isPinned && (
           <div 
-            className="absolute top-0 right-0 p-2 cursor-pointer hover:bg-black hover:bg-opacity-5 rounded-full"
+            className="absolute top-2 right-2 p-2 cursor-pointer hover:bg-black hover:bg-opacity-5 rounded-full"
             onClick={(e) => handleAction(e, () => onPin(note.id))}
             aria-label="Unpin note"
           >
@@ -63,9 +63,9 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, onPin, onArchive, onDelete, o
           </div>
         )}
         
-        <div className="note-card-content">
+        <div className="flex-1">
           {note.title && (
-            <h3 className="font-medium text-lg mb-2 break-words">{note.title}</h3>
+            <h3 className="font-medium text-lg mb-2 break-words pr-8">{note.title}</h3>
           )}
           <p className="text-gray-600 whitespace-pre-line break-words">
             {truncateContent(note.content)}
@@ -73,7 +73,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, onPin, onArchive, onDelete, o
         </div>
         
         {note.tags && note.tags.length > 0 && (
-          <div className="px-4 pb-2 flex flex-wrap gap-1">
+          <div className="mt-3 flex flex-wrap gap-1">
             {note.tags.map((tag) => (
               <div 
                 key={tag}
@@ -86,7 +86,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, onPin, onArchive, onDelete, o
           </div>
         )}
         
-        <div className="note-card-footer">
+        <div className="mt-4 flex items-center justify-between border-t border-gray-100 pt-3">
           <div className="text-xs text-gray-500">
             {new Date(note.updatedAt).toLocaleDateString()}
           </div>
