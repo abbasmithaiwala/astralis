@@ -11,6 +11,25 @@ import { toast } from 'sonner';
 import * as NoteService from '@/services/noteService';
 import { supabase } from '@/integrations/supabase/client';
 
+// Custom hook to track tab visibility
+const useTabVisibility = () => {
+  const [isVisible, setIsVisible] = useState(!document.hidden);
+  
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      setIsVisible(!document.hidden);
+    };
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+  
+  return isVisible;
+};
+
 const NotesPage: React.FC = () => {
   const [notes, setNotes] = useState<NoteProps[]>([]);
   const [archivedNotes, setArchivedNotes] = useState<NoteProps[]>([]);
@@ -26,6 +45,9 @@ const NotesPage: React.FC = () => {
   const [user, setUser] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showSearchBox, setShowSearchBox] = useState(false);
+  const [lastPathname, setLastPathname] = useState('');
+  
+  const isTabVisible = useTabVisibility();
 
   const { view, tag } = useParams<{ view?: string; tag?: string }>();
   const location = useLocation();
@@ -79,20 +101,31 @@ const NotesPage: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Load data when route or user changes
+  // Load data when route or user changes, but not when just switching tabs
   useEffect(() => {
     if (!user) return;
     
-    const loadData = async () => {
-      setIsLoading(true);
-      await loadNotes();
-      const allTags = await NoteService.getAllTags();
-      setTags(allTags);
-      setIsLoading(false);
-    };
+    // Skip data reload if just returning to the app from another tab (when path hasn't changed)
+    const isPathChanged = lastPathname !== location.pathname;
     
-    loadData();
-  }, [location.pathname, user]);
+    // Update the last pathname
+    setLastPathname(location.pathname);
+    
+    // Only reload data if:
+    // 1. The path has changed, or
+    // 2. We're coming back to a visible tab with valid user and isLoading is true (first load)
+    if (isPathChanged || (isTabVisible && isLoading && user)) {
+      const loadData = async () => {
+        setIsLoading(true);
+        await loadNotes();
+        const allTags = await NoteService.getAllTags();
+        setTags(allTags);
+        setIsLoading(false);
+      };
+      
+      loadData();
+    }
+  }, [location.pathname, user, isTabVisible, lastPathname, isLoading]);
 
   const loadNotes = async () => {
     if (view === 'archived') {
