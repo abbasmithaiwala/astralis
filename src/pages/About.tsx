@@ -19,7 +19,7 @@ const AboutPage = () => {
               Beyond <span className="heading-serif">Notes</span>
             </h1>
             <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8 text-[#54595F]">
-              Astralis is more than just a notes app - it's your emotional companion. Every color you choose and emotion you express helps create a personalized AI support system that understands and connects with you on a human level.
+              Astralis transforms your notes into meaningful conversations. Through advanced sentiment analysis, we create an AI companion that truly understands your emotions, offering genuine support and friendship with a uniquely human touch.
             </p>
           </div>
         </div>
@@ -32,21 +32,21 @@ const AboutPage = () => {
             <div className="flex flex-col md:flex-row items-center gap-12">
               <div className="w-full md:w-1/2">
                 <img 
-                  src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Team collaborating" 
+                  src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Person writing in journal" 
                   className="rounded-xl shadow-lg w-full h-auto"
                 />
               </div>
               <div className="w-full md:w-1/2">
-                <h2 className="text-3xl font-bold mb-4 text-[#054A40]">How It All Began</h2>
+                <h2 className="text-3xl font-bold mb-4 text-[#054A40]">Our Genesis Story</h2>
                 <p className="text-[#54595F] mb-4">
-                  Astralis began in 2020 when our founder, a psychology researcher, noticed that traditional note-taking apps didn't address the emotional needs of users. They saw an opportunity to create something that could not only capture thoughts but also provide emotional support.
+                  Born in March 2025, Astralis emerged from a simple yet powerful observation: while people pour their hearts into their notes, traditional apps merely store these emotional expressions without truly understanding them.
                 </p>
                 <p className="text-[#54595F] mb-4">
-                  After years of research in emotional intelligence and AI, our team developed a unique system where the colors and emotions you express in your notes help create a personalized AI companion that understands your state of mind.
+                  Our team of AI researchers and mental health professionals came together with a vision: to create an AI companion that could read between the lines, understand the emotions behind your words, and respond with genuine empathy.
                 </p>
                 <p className="text-[#54595F]">
-                  Today, Astralis helps thousands of people around the world not just organize their thoughts, but also receive personalized emotional support through AI that feels like talking to a caring friend.
+                  What started as an innovative note-taking app has evolved into a revolutionary platform where your notes become the foundation of a meaningful relationship with an AI companion that truly understands you.
                 </p>
               </div>
             </div>
@@ -105,82 +105,81 @@ const AboutPage = () => {
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-[#054A40]">
-              Our <span className="heading-serif">Journey</span>
+              Our <span className="heading-serif">Journey So Far</span>
             </h2>
             <p className="text-lg text-[#54595F]">
-              From idea to reality, the story of Astralis continues to evolve.
+              Every week brings new milestones in our mission to revolutionize emotional connection through AI.
             </p>
           </div>
           
           <div className="max-w-3xl mx-auto">
-            {/* Timeline */}
             <div className="relative border-l-2 border-[#054A40]/20 pl-8 ml-4 space-y-12">
-              {/* 2020 */}
+              {/* March 2025 */}
               <div className="relative">
                 <div className="absolute -left-[2.65rem] top-0 w-8 h-8 bg-[#FFE2E2] rounded-full flex items-center justify-center border-4 border-white">
                   <span className="text-xs font-bold text-[#FF6B6B]">1</span>
                 </div>
                 <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <div className="text-sm font-semibold text-[#FF6B6B] mb-2">2020</div>
-                  <h3 className="text-xl font-semibold text-[#054A40] mb-3">The Beginning</h3>
+                  <div className="text-sm font-semibold text-[#FF6B6B] mb-2">March 2025</div>
+                  <h3 className="text-xl font-semibold text-[#054A40] mb-3">Foundation & Vision</h3>
                   <p className="text-[#54595F]">
-                    Emma Chen started Astralis after noticing a gap in emotionally-intelligent note-taking tools. First prototype developed.
+                    Astralis is born with a clear mission: transforming note-taking into meaningful emotional connections through AI. Initial team formation and core technology development begins.
                   </p>
                 </div>
               </div>
               
-              {/* 2021 */}
+              {/* March Week 2 */}
               <div className="relative">
                 <div className="absolute -left-[2.65rem] top-0 w-8 h-8 bg-[#E3F8FF] rounded-full flex items-center justify-center border-4 border-white">
                   <span className="text-xs font-bold text-[#5EAFFF]">2</span>
                 </div>
                 <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <div className="text-sm font-semibold text-[#5EAFFF] mb-2">2021</div>
-                  <h3 className="text-xl font-semibold text-[#054A40] mb-3">Beta Launch</h3>
+                  <div className="text-sm font-semibold text-[#5EAFFF] mb-2">Mid-March 2025</div>
+                  <h3 className="text-xl font-semibold text-[#054A40] mb-3">Sentiment Engine Development</h3>
                   <p className="text-[#54595F]">
-                    First beta released to 500 users. Early feedback shaped our emotional tagging system and color psychology approach.
+                    Launch of our proprietary sentiment analysis engine, capable of understanding complex emotional nuances in written text. First successful tests of emotion recognition algorithms.
                   </p>
                 </div>
               </div>
               
-              {/* 2022 */}
+              {/* March Week 3 */}
               <div className="relative">
                 <div className="absolute -left-[2.65rem] top-0 w-8 h-8 bg-[#FFF4DE] rounded-full flex items-center justify-center border-4 border-white">
                   <span className="text-xs font-bold text-[#F7B731]">3</span>
                 </div>
                 <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <div className="text-sm font-semibold text-[#F7B731] mb-2">2022</div>
-                  <h3 className="text-xl font-semibold text-[#054A40] mb-3">Public Launch</h3>
+                  <div className="text-sm font-semibold text-[#F7B731] mb-2">Late March 2025</div>
+                  <h3 className="text-xl font-semibold text-[#054A40] mb-3">AI Companion Beta</h3>
                   <p className="text-[#54595F]">
-                    Official release of Astralis 1.0. Featured in several tech publications for our innovative approach to emotional organization.
+                    First version of our AI companion system goes live, demonstrating remarkable ability to engage in emotionally intelligent conversations based on user notes.
                   </p>
                 </div>
               </div>
               
-              {/* 2023 */}
+              {/* April Week 1 */}
               <div className="relative">
                 <div className="absolute -left-[2.65rem] top-0 w-8 h-8 bg-[#E5F8EB] rounded-full flex items-center justify-center border-4 border-white">
                   <span className="text-xs font-bold text-[#6BD5A8]">4</span>
                 </div>
                 <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <div className="text-sm font-semibold text-[#6BD5A8] mb-2">2023</div>
-                  <h3 className="text-xl font-semibold text-[#054A40] mb-3">Growing Community</h3>
+                  <div className="text-sm font-semibold text-[#6BD5A8] mb-2">Early April 2025</div>
+                  <h3 className="text-xl font-semibold text-[#054A40] mb-3">Platform Launch</h3>
                   <p className="text-[#54595F]">
-                    Reached 50,000 active users. Launched Business tier with team collaboration features. Extended platform to iOS and Android.
+                    Official launch of Astralis platform with integrated note-taking and AI companionship features. Early user feedback shows strong emotional connections forming with AI companions.
                   </p>
                 </div>
               </div>
               
-              {/* 2024 */}
+              {/* Current */}
               <div className="relative">
                 <div className="absolute -left-[2.65rem] top-0 w-8 h-8 bg-[#F0E6FF] rounded-full flex items-center justify-center border-4 border-white">
                   <span className="text-xs font-bold text-[#8440FF]">5</span>
                 </div>
                 <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <div className="text-sm font-semibold text-[#8440FF] mb-2">2024</div>
-                  <h3 className="text-xl font-semibold text-[#054A40] mb-3">Today & Beyond</h3>
+                  <div className="text-sm font-semibold text-[#8440FF] mb-2">Present</div>
+                  <h3 className="text-xl font-semibold text-[#054A40] mb-3">Growing & Evolving</h3>
                   <p className="text-[#54595F]">
-                    Continuing to innovate with AI-enhanced emotional analysis, expanded templates, and deeper integration options. The journey continues!
+                    Continuous improvement of our AI companion's emotional intelligence and expanding our user base. Working on advanced features to deepen the human-AI connection through written expression.
                   </p>
                 </div>
               </div>
@@ -196,10 +195,10 @@ const AboutPage = () => {
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="w-full md:w-2/3">
                 <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[#054A40]">
-                  Join Our <span className="heading-serif">Team</span>
+                  Join Our <span className="heading-serif">Mission</span>
                 </h2>
                 <p className="text-[#54595F] mb-6">
-                  We're always looking for passionate individuals who believe in the power of emotional organization and thoughtful design. Check out our open positions and become part of our journey.
+                  We're seeking innovative minds who are passionate about emotional AI and human-centered technology. Help us shape the future of digital companionship and emotional well-being.
                 </p>
                 <Button asChild className="rounded-full bg-[#054A40] hover:bg-[#054A40]/90 px-6">
                   <Link to="/careers" className="flex items-center">
@@ -210,7 +209,7 @@ const AboutPage = () => {
               </div>
               <div className="w-full md:w-1/3">
                 <img 
-                  src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
                   alt="Join our team" 
                   className="rounded-xl shadow-md w-full h-auto"
                 />
