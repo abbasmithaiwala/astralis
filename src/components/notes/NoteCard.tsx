@@ -20,9 +20,10 @@ interface NoteCardProps {
   onArchive: (id: string) => void;
   onDelete: (id: string) => void;
   onClick: (id: string) => void;
+  className?: string;
 }
 
-const NoteCard: React.FC<NoteCardProps> = ({ note, onPin, onArchive, onDelete, onClick }) => {
+const NoteCard: React.FC<NoteCardProps> = ({ note, onPin, onArchive, onDelete, onClick, className = '' }) => {
   const getCardBgColor = () => {
     switch (note.color) {
       case 'pink': return 'bg-pastel-pink';
@@ -49,7 +50,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, onPin, onArchive, onDelete, o
 
   return (
     <Card 
-      className={`note-card animate-fade-in ${getCardBgColor()} hover:shadow-lg transition-all duration-300 cursor-pointer w-full max-w-[320px] min-h-[200px] flex flex-col`} 
+      className={`note-card animate-fade-in ${getCardBgColor()} hover:shadow-lg transition-all duration-300 cursor-pointer w-full max-w-[320px] min-h-[200px] flex flex-col ${className}`} 
       onClick={handleCardClick}
     >
       <div className="relative flex flex-col flex-1 p-4">

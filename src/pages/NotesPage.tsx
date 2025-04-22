@@ -493,7 +493,7 @@ const NotesPage: React.FC = () => {
             <div className={`
               ${isGridView ? 
                 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center' : 
-                'flex flex-col gap-4 items-center'
+                'flex flex-col gap-4 w-full'
               } max-w-[1400px] mx-auto`}
             >
               {displayNotes.map((note) => (
@@ -512,6 +512,7 @@ const NotesPage: React.FC = () => {
                     handleDeleteNote
                   }
                   onClick={view !== 'trash' ? handleNoteClick : () => {}}
+                  className={isGridView ? '' : 'max-w-none'}
                 />
               ))}
             </div>
