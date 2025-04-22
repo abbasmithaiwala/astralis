@@ -117,7 +117,7 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
         />
       )}
 
-      <Button
+      {/* <Button
         variant="ghost"
         size="icon"
         className="fixed top-4 left-4 z-50 md:hidden text-[#054A40]"
@@ -125,7 +125,7 @@ const NoteSidebar: React.FC<SidebarProps> = ({ isOpen, onToggle, tags }) => {
         aria-label={isOpen ? "Close sidebar" : "Open sidebar"}
       >
         {isOpen ? <X size={24} /> : <Menu size={24} />}
-      </Button>
+      </Button> */}
       
       <aside 
         className={cn(
