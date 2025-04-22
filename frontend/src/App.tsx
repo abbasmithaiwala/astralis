@@ -21,6 +21,7 @@ import Terms from "./pages/Terms";
 import Chat from "./pages/Chat";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import Examples from "./pages/Examples";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +58,7 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="/examples" element={<Examples />} />
             <Route path="/chat" element={
               <ProtectedRoute>
                 <Chat />
