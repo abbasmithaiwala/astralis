@@ -1,12 +1,16 @@
 from fastapi import FastAPI, HTTPException, Depends, Header
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Literal
 import httpx
 import os
 from supabase import create_client, Client
 import uuid
 from datetime import datetime
+from dotenv import load_dotenv
+import uuid
+
+load_dotenv()
 
 app = FastAPI(title="Notes AI Processing API")
 
@@ -18,6 +22,7 @@ app.add_middleware(
     allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["*"],
 )
+
 
 # Supabase client initialization
 SUPABASE_URL = os.environ.get("SUPABASE_URL")
@@ -31,19 +36,26 @@ def get_supabase() -> Client:
 
 # Models reflecting the database schema
 class NoteCreate(BaseModel):
+    id: Optional[uuid.UUID] = None
     user_id: str
     title: Optional[str] = None
     content: str
     color: Optional[str] = None
+    isPinned: Optional[bool] = False
+    isArchived: Optional[bool] = False
+    isTrashed: Optional[bool] = False
+    createdAt: Optional[str] = None
+    updatedAt: Optional[str] = None
 
 class ChatMessage(BaseModel):
-    user_id: str
+    id: uuid.UUID
+    user_id: uuid.UUID
     message: str
-    msg_type: str
+    msg_type: Literal["user_msg", "ai_response", "user_note"]
     is_processed: bool = False
-    created_at: str
-    reply_to_msg_id: Optional[str] = None
-    request_id: Optional[str] = None
+    created_at: Optional[str] = None
+    request_id: Optional[int] = None
+    reply_to_msg_id: Optional[uuid.UUID] = None
 
 class Message(BaseModel):
     role: str
@@ -62,6 +74,7 @@ async def create_note(note: NoteCreate, supabase: Client = Depends(get_supabase)
     try:
         # 1. Store the note in the notes table
         note_data = {
+            "id": str(uuid.uuid4()),
             "user_id": note.user_id,
             "title": note.title or "",
             "content": note.content,
@@ -103,6 +116,7 @@ async def create_note(note: NoteCreate, supabase: Client = Depends(get_supabase)
         
         # 4. Store the AI response in chat_messages table
         chat_message_data = {
+            "id": str(uuid.uuid4()),
             "user_id": note.user_id,
             "message": ai_data.get("response", "No response from AI"),
             "msg_type": "ai_response",
@@ -110,7 +124,6 @@ async def create_note(note: NoteCreate, supabase: Client = Depends(get_supabase)
             "created_at": datetime.now().isoformat(),
             "reply_to_msg_id": ai_request_id,
             "request_id": ai_request_id,  # Store the request ID for reference
-            "note_id": created_note["id"]  # Link to the note
         }
         
         chat_result = supabase.table("chat_messages").insert(chat_message_data).execute()
