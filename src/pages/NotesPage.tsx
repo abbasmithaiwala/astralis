@@ -797,11 +797,6 @@ const NotesPage: React.FC = () => {
         isOpen={isSidebarOpen}
         onToggle={toggleSidebar}
         tags={tags}
-        className={`
-          fixed left-0 top-0 bottom-0 z-30 transition-transform duration-300 transform
-          ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
-          md:translate-x-0 md:static md:z-auto
-        `}
       />
       
       <div className={`
@@ -928,7 +923,6 @@ const NotesPage: React.FC = () => {
                     handleDeleteNote
                   }
                   onClick={view !== 'trash' ? handleNoteClick : () => {}}
-                  className="h-full" // Make cards equal height in grid
                 />
               ))}
             </div>
