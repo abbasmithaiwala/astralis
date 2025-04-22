@@ -50,7 +50,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, onPin, onArchive, onDelete, o
 
   return (
     <Card 
-      className={`note-card animate-fade-in ${getCardBgColor()} hover:shadow-lg transition-all duration-300 cursor-pointer w-full max-w-[320px] min-h-[200px] flex flex-col ${className}`} 
+      className={`note-card animate-fade-in ${getCardBgColor()} hover:shadow-lg transition-all duration-300 cursor-pointer w-full h-full min-h-[200px] flex flex-col ${className}`} 
       onClick={handleCardClick}
     >
       <div className="relative flex flex-col flex-1 p-4">
