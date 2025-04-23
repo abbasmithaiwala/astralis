@@ -15,7 +15,27 @@ export interface NoteCreateDTO {
   isTrashed?: boolean;
 }
 
-export const createNote = async (note: NoteCreateDTO) => {
+export interface NoteWithAIResponse {
+  note: {
+    id: string;
+    user_id: string;
+    title?: string;
+    content: string;
+    color?: string;
+    isPinned?: boolean;
+    isArchived?: boolean;
+    isTrashed?: boolean;
+    created_at: string;
+    updated_at: string;
+  };
+  ai_response?: {
+    id: string;
+    message: string;
+    created_at: string;
+  };
+}
+
+export const createNote = async (note: NoteCreateDTO): Promise<NoteWithAIResponse> => {
   const res = await axios.post(`${API_BASE}/notes/`, note);
   return res.data;
 };
